@@ -15,5 +15,10 @@ namespace Matricula.MatriculaConsole.Models
         public Mentor Mentor { get; set; }
         public Disciplina Disciplina { get; set; }
         public Boolean Ativo { get; set; }
+        public override string ToString()
+        {
+            Console.WriteLine("Relação mentor e disciplina: ");
+            return $"Mentor = {Mentor} \nDisciplina = {Disciplina}\n\n";
+        }
     }
 }
