@@ -19,19 +19,25 @@ namespace Matricula.MatriculaConsole.Views
             Console.WriteLine("Cadastro de vínculo entre mentor e disciplina\n");
             Console.WriteLine("Digite o Cpf do Mentor:");
             m.Cpf = Console.ReadLine();
-            m = MentorDAO.BuscarMentor(m.Cpf);
+            m = MentorDAO.BuscarMentorPorCpf(m.Cpf);
             if (m != null && Validacao.ValidarCpf(m.Cpf))
             {
                 md.Mentor = m;
                 Console.WriteLine("Digite o nome da disciplina:");
                 d.Nome = Console.ReadLine();
-                d = DisciplinaDAO.BuscarDisciplina(d.Nome);
+                d = DisciplinaDAO.BuscarDisciplinaPorNome(d.Nome);
 
                 if (d != null)
                 {
                         md.Disciplina = d;
-                        MentorDisciplinaDAO.Cadastrar(md);
-                        Console.WriteLine("Atrelamento realizado.");
+                        if (MentorDisciplinaDAO.Cadastrar(md))
+                        {
+                            Console.WriteLine("Atrelamento realizado com sucesso!!!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Atrelamento já existe!!!");
+                        }
                 }
                 else
                 {

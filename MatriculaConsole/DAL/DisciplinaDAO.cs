@@ -1,4 +1,6 @@
 ﻿using Matricula.MatriculaConsole.Models;
+using MatriculaConsole.DAL;
+using MatriculaConsole.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,28 +10,19 @@ namespace Matricula.MatriculaConsole.DAL
 {
     class DisciplinaDAO
     {
-        private static List<Disciplina> disciplinas = new List<Disciplina>();
-        public static List<Disciplina> Listar() => disciplinas;
+        private static Context _context = SingletonContext.GetInstance();
         public static bool Cadastrar(Disciplina d)
         {
-            if (BuscarDisciplina(d.Nome) == null)
+            if (BuscarDisciplinaPorNome(d.Nome) == null)
             {
-                disciplinas.Add(d);
+                _context.Disciplinas.Add(d);
+                _context.SaveChanges();
                 return true;
             }
             return false;
         }
-        public static Disciplina BuscarDisciplina(string nome)
-        {
-            return disciplinas.FirstOrDefault(x => x.Nome == nome);
-            //foreach (Cliente clienteCadastrado in clientes)
-            //{
-            //    if (clienteCadastrado.Cpf == cpf)
-            //    {
-            //        return clienteCadastrado;
-            //    }
-            //}
-            //return null;
-        }
+        public static Disciplina BuscarDisciplinaPorNome(string nome) => _context.Disciplinas.Where(d => d.Nome == nome)
+                    .FirstOrDefault();
+        public static List<Disciplina> Listar() => _context.Disciplinas.ToList();
     }
 }

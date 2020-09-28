@@ -1,4 +1,6 @@
 ﻿using Matricula.MatriculaConsole.Models;
+using MatriculaConsole.DAL;
+using MatriculaConsole.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,28 +10,19 @@ namespace Matricula.MatriculaConsole.DAL
 {
     class MentorDAO
     {
-        private static List<Mentor> mentores = new List<Mentor>();
-        public static List<Mentor> Listar() => mentores;
+        private static Context _context = SingletonContext.GetInstance();
         public static bool Cadastrar(Mentor m)
         {
-            if (BuscarMentor(m.Cpf) == null)
+            if (BuscarMentorPorCpf(m.Cpf) == null)
             {
-                mentores.Add(m);
+                _context.Mentores.Add(m);
+                _context.SaveChanges();
                 return true;
             }
             return false;
         }
-        public static Mentor BuscarMentor(string cpf)
-        {
-            return mentores.FirstOrDefault(x => x.Cpf == cpf);
-            //foreach (Cliente clienteCadastrado in clientes)
-            //{
-            //    if (clienteCadastrado.Cpf == cpf)
-            //    {
-            //        return clienteCadastrado;
-            //    }
-            //}
-            //return null;
-        }
+        public static List<Mentor> Listar() => _context.Mentores.ToList();
+        public static Mentor BuscarMentorPorCpf(string cpf) => _context.Mentores.Where(m => m.Cpf == cpf)
+                    .FirstOrDefault();
     }
 }
