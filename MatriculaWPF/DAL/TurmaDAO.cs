@@ -22,5 +22,7 @@ namespace MatriculaWPF.DAL
         public static List<Turma> Listar() => _context.Turmas.ToList();
         public static Turma BuscarTurma(Turma turma) => _context.Turmas.Where(t => t.AdministracaoHorario == turma.AdministracaoHorario && t.Nivel == turma.Nivel)
                     .FirstOrDefault();
+        public static Turma BuscarTurmaPorId(int id) => _context.Turmas.Where(t => t.Id == id)
+                    .FirstOrDefault();
     }
 }

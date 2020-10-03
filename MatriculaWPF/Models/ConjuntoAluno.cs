@@ -10,10 +10,12 @@ namespace MatriculaWPF.Models
         public ConjuntoAluno()
         {
             Turma = new Turma();
-            Alunos = new List<Aluno>();
+            Aluno = new Aluno();
+            //Alunos = new List<Aluno>();
         }
         //Atributos, propriedades e características
         public Turma Turma { get; set; }
-        public List<Aluno> Alunos { get; set; }
+        public Aluno Aluno { get; set; }
+        //public List<Aluno> Alunos { get; set; }
     }
 }

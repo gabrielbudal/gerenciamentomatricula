@@ -19,5 +19,9 @@ namespace MatriculaWPF.Models
         public AdministracaoHorario AdministracaoHorario { get; set; }
         public int Ano { get; set; }
         public Nivel Nivel { get; set; }
+        public override string ToString()
+        {
+            return $"{Nivel} - {Descricao} - {Ano}";
+        }
     }
 }

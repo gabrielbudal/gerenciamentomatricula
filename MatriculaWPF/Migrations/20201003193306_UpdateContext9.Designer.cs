@@ -4,14 +4,16 @@ using MatriculaWPF.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MatriculaWPF.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20201003193306_UpdateContext9")]
+    partial class UpdateContext9
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,6 +58,9 @@ namespace MatriculaWPF.Migrations
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("ConjuntoAlunoId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Cpf")
                         .HasColumnType("nvarchar(max)");
 
@@ -66,6 +71,8 @@ namespace MatriculaWPF.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ConjuntoAlunoId");
 
                     b.ToTable("Alunos");
                 });
@@ -258,6 +265,13 @@ namespace MatriculaWPF.Migrations
                     b.HasIndex("NivelId");
 
                     b.ToTable("Turmas");
+                });
+
+            modelBuilder.Entity("MatriculaWPF.Models.Aluno", b =>
+                {
+                    b.HasOne("MatriculaWPF.Models.ConjuntoAluno", null)
+                        .WithMany("Alunos")
+                        .HasForeignKey("ConjuntoAlunoId");
                 });
 
             modelBuilder.Entity("MatriculaWPF.Models.ConjuntoAluno", b =>

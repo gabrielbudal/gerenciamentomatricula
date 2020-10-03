@@ -82,5 +82,11 @@ namespace MatriculaWPF.Views
             frmCadastrarTurma frm = new frmCadastrarTurma();
             frm.ShowDialog();
         }
+
+        private void menuCadastrarConjuntoAlunos_Click(object sender, RoutedEventArgs e)
+        {
+            frmCadastrarConjuntoAluno frm = new frmCadastrarConjuntoAluno();
+            frm.ShowDialog();
+        }
     }
 }

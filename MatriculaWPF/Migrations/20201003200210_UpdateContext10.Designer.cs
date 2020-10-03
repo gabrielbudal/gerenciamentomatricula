@@ -4,14 +4,16 @@ using MatriculaWPF.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MatriculaWPF.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20201003200210_UpdateContext10")]
+    partial class UpdateContext10
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,6 +58,9 @@ namespace MatriculaWPF.Migrations
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("ConjuntoAlunoId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Cpf")
                         .HasColumnType("nvarchar(max)");
 
@@ -67,6 +72,8 @@ namespace MatriculaWPF.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ConjuntoAlunoId");
+
                     b.ToTable("Alunos");
                 });
 
@@ -76,9 +83,6 @@ namespace MatriculaWPF.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("AlunoId")
-                        .HasColumnType("int");
 
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");
@@ -90,8 +94,6 @@ namespace MatriculaWPF.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AlunoId");
 
                     b.HasIndex("TurmaId");
 
@@ -260,12 +262,15 @@ namespace MatriculaWPF.Migrations
                     b.ToTable("Turmas");
                 });
 
+            modelBuilder.Entity("MatriculaWPF.Models.Aluno", b =>
+                {
+                    b.HasOne("MatriculaWPF.Models.ConjuntoAluno", null)
+                        .WithMany("Alunos")
+                        .HasForeignKey("ConjuntoAlunoId");
+                });
+
             modelBuilder.Entity("MatriculaWPF.Models.ConjuntoAluno", b =>
                 {
-                    b.HasOne("MatriculaWPF.Models.Aluno", "Aluno")
-                        .WithMany()
-                        .HasForeignKey("AlunoId");
-
                     b.HasOne("MatriculaWPF.Models.Turma", "Turma")
                         .WithMany()
                         .HasForeignKey("TurmaId");

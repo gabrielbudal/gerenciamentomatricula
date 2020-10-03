@@ -22,6 +22,7 @@
                 <Separator/>
                 <MenuItem x:Name="menuCadastrarAdministracaoHorario" Header="_Administração Horario" Click="menuCadastrarAdministracaoHorario_Click"/>
                 <MenuItem x:Name="menuCadastrarTurma" Header="_Turma" Click="menuCadastrarTurma_Click"/>
+                <MenuItem x:Name="menuCadastrarConjuntoAlunos" Header="_Conjunto Alunos" Click="menuCadastrarConjuntoAlunos_Click"/>
             </MenuItem>
             <MenuItem Header="_Sobre"/>
         </Menu>

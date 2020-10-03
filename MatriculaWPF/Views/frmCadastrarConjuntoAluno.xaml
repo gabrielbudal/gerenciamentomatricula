@@ -1,0 +1,25 @@
+﻿<Window x:Class="MatriculaWPF.Views.frmCadastrarConjuntoAluno"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MatriculaWPF.Views"
+        mc:Ignorable="d"
+        Title="frmCadastrarConjuntoAluno" Height="450" Width="800" Loaded="Window_Loaded">
+    <Grid>
+        <ComboBox x:Name="cboTurmas" HorizontalAlignment="Left" Height="32" Margin="217,59,0,0" VerticalAlignment="Top" Width="109"/>
+        <ComboBox x:Name="cboAlunos" HorizontalAlignment="Left" Margin="434,56,0,0" VerticalAlignment="Top" Width="125" Height="38"/>
+        <Button x:Name="btnAdicionar" Content="Adicionar" HorizontalAlignment="Left" Margin="434,107,0,0" VerticalAlignment="Top" Click="btnAdicionar_Click" Width="125"/>
+        <DataGrid x:Name="dtaConjuntoAlunos" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" Height="203" Width="630" Margin="0,155,0,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Descrição" Width="1*" Binding="{Binding Descricao}"/>
+                <DataGridTextColumn Header="Nome" Width="1*" Binding="{Binding Nome}"/>
+                <DataGridTextColumn Header="CPF" Width="1*" Binding="{Binding Cpf}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Turma" HorizontalAlignment="Left" Margin="217,17,0,0" VerticalAlignment="Top" Height="37" Width="68"/>
+        <Label Content="Aluno" HorizontalAlignment="Left" Margin="434,19,0,0" VerticalAlignment="Top" Height="37" Width="68"/>
+        <Button x:Name="btnCadastrar" Content="Cadastrar" HorizontalAlignment="Left" Margin="557,380,0,0" VerticalAlignment="Top" Height="29" Width="74" Click="btnCadastrar_Click"/>
+
+    </Grid>
+</Window>
