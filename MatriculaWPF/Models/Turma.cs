@@ -11,11 +11,13 @@ namespace MatriculaWPF.Models
         {
             AdministracaoHorario = new AdministracaoHorario();
             Nivel = new Nivel();
+            DateTime dataatual = DateTime.Now;
+            Ano = dataatual.Year;
         }
         //Atributos, propriedades e características
         public string Descricao { get; set; }
         public AdministracaoHorario AdministracaoHorario { get; set; }
-        public DateTime Data { get; set; }
+        public int Ano { get; set; }
         public Nivel Nivel { get; set; }
     }
 }

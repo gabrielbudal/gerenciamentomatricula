@@ -71,5 +71,16 @@ namespace MatriculaWPF.Views
             frmCadastrarHistoricoAluno frm = new frmCadastrarHistoricoAluno();
             frm.ShowDialog();
         }
+        private void menuCadastrarAdministracaoHorario_Click(object sender, RoutedEventArgs e)
+        {
+            frmCadastrarAdministracaoHorario frm = new frmCadastrarAdministracaoHorario();
+            frm.ShowDialog();
+        }
+
+        private void menuCadastrarTurma_Click(object sender, RoutedEventArgs e)
+        {
+            frmCadastrarTurma frm = new frmCadastrarTurma();
+            frm.ShowDialog();
+        }
     }
 }

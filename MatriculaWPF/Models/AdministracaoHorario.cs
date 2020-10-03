@@ -11,8 +11,13 @@ namespace MatriculaWPF.Models
         {
         }
         //Atributos, propriedades e características
-        public DateTime HoraFim { get; set; }
-        public DateTime HoraInicio { get; set; }
+        public string HoraFim { get; set; }
+        public string HoraInicio { get; set; }
         public int TotalAulas { get; set; }
+        public override string ToString()
+        {
+            return $"Horário de início: {HoraInicio} | Horário fim: {HoraFim}" +
+                $" | Total de aulas: {TotalAulas}";
+        }
     }
 }

@@ -13,6 +13,8 @@ namespace MatriculaWPF.Models
         public DbSet<Nivel> Niveis { get; set; }
         public DbSet<Aluno> Alunos { get; set; }
         public DbSet<HistoricoAluno> HistoricoAlunos { get; set; }
+        public DbSet<AdministracaoHorario> AdministracaoHorarios { get; set; }
+        public DbSet<Turma> Turmas { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -90,7 +90,7 @@ namespace MatriculaWPF.Views
                         MessageBoxButton.OK, MessageBoxImage.Information);
                 LimparFormulario();
             }
-            }
+        }
         // else
         //{
         //MessageBox.Show("Preencha todos os campos!", "Matricula WPF",

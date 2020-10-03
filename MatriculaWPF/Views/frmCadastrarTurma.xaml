@@ -1,0 +1,19 @@
+﻿<Window x:Class="MatriculaWPF.Views.frmCadastrarTurma"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MatriculaWPF.Views"
+        mc:Ignorable="d"
+        Title="frmCadastrarTurma" Height="450" Width="800" Loaded="Window_Loaded">
+    <Grid>
+        <ComboBox x:Name="cboAdms" HorizontalAlignment="Left" Margin="356,111,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btnAdicionar" Content="Adicionar" HorizontalAlignment="Left" Margin="523,105,0,0" VerticalAlignment="Top" Height="34" Width="74" Click="btnAdicionar_Click" RenderTransformOrigin="-0.386,0.434"/>
+        <ComboBox x:Name="cboNiveis" HorizontalAlignment="Left" Margin="193,111,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Cadastrar Turmas" HorizontalAlignment="Left" Height="47" Margin="133,31,0,0" VerticalAlignment="Top" Width="315"/>
+        <Label Content="Niveis:" HorizontalAlignment="Left" Height="31" Margin="201,78,0,0" VerticalAlignment="Top" Width="104"/>
+        <Label Content="Adms:" HorizontalAlignment="Left" Height="31" Margin="356,75,0,0" VerticalAlignment="Top" Width="104"/>
+        <TextBox x:Name="txtDescricao" HorizontalAlignment="Left" Margin="290,217,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="320"/>
+        <Label Content="Descrição:" HorizontalAlignment="Left" Height="32" Margin="176,169,0,0" VerticalAlignment="Top" Width="87"/>
+    </Grid>
+</Window>
