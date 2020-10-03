@@ -1,0 +1,17 @@
+﻿<Window x:Class="MatriculaWPF.Views.frmCadastrarRelacionamentoMentorDisciplina"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MatriculaWPF.Views"
+        mc:Ignorable="d"
+        Title="frmCadastrarRelacionamentoMentorDisciplina" Height="450" Width="800" Loaded="Window_Loaded">
+    <Grid>
+        <ComboBox x:Name="cboDisciplinas" HorizontalAlignment="Left" Margin="356,111,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btnAdicionar" Content="Adicionar" HorizontalAlignment="Left" Margin="523,105,0,0" VerticalAlignment="Top" Height="34" Width="74" Click="btnAdicionar_Click" RenderTransformOrigin="-0.386,0.434"/>
+        <ComboBox x:Name="cboMentores" HorizontalAlignment="Left" Margin="193,111,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Cadastrar Relacionamento Mentor x Disciplina" HorizontalAlignment="Left" Height="47" Margin="133,31,0,0" VerticalAlignment="Top" Width="315"/>
+        <Label Content="Mentores:" HorizontalAlignment="Left" Height="31" Margin="201,78,0,0" VerticalAlignment="Top" Width="104"/>
+        <Label Content="Disciplinas:" HorizontalAlignment="Left" Height="31" Margin="364,76,0,0" VerticalAlignment="Top" Width="104"/>
+    </Grid>
+</Window>

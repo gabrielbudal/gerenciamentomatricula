@@ -19,8 +19,20 @@ namespace MatriculaWPF.DAL
             }
             return false;
         }
+        public static void Remover(Disciplina disciplina)
+        {
+            _context.Disciplinas.Remove(disciplina);
+            _context.SaveChanges();
+        }
+        public static void Alterar(Disciplina disciplina)
+        {
+            _context.Disciplinas.Update(disciplina);
+            _context.SaveChanges();
+        }
         public static Disciplina BuscarDisciplinaPorNome(string nome) => _context.Disciplinas.Where(d => d.Nome == nome)
                     .FirstOrDefault();
         public static List<Disciplina> Listar() => _context.Disciplinas.ToList();
+        public static Disciplina BuscarDisciplinaPorId(int id) => _context.Disciplinas.Where(d => d.Id == id)
+                    .FirstOrDefault();
     }
 }

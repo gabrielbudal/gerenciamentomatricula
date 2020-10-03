@@ -47,5 +47,29 @@ namespace MatriculaWPF.Views
                 e.Cancel = true;
             }
         }
+
+        private void menuCadastrarRelacionamentoMentorDisciplina_Click(object sender, RoutedEventArgs e)
+        {
+            frmCadastrarRelacionamentoMentorDisciplina frm = new frmCadastrarRelacionamentoMentorDisciplina();
+            frm.ShowDialog();
+        }
+
+        private void menuCadastrarAluno_Click(object sender, RoutedEventArgs e)
+        {
+            frmCadastrarAluno frm = new frmCadastrarAluno();
+            frm.ShowDialog();
+        }
+
+        private void menuCadastrarNivel_Click(object sender, RoutedEventArgs e)
+        {
+            frmCadastrarNivel frm = new frmCadastrarNivel();
+            frm.ShowDialog();
+        }
+
+        private void menuCadastrarHistoricoAluno_Click(object sender, RoutedEventArgs e)
+        {
+            frmCadastrarHistoricoAluno frm = new frmCadastrarHistoricoAluno();
+            frm.ShowDialog();
+        }
     }
 }

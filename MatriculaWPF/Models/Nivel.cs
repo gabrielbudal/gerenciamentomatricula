@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace MatriculaWPF.Models
 {
+    [Table("Niveis")]
     class Nivel : BaseModel
     {
         //Contrutores

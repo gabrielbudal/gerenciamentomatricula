@@ -20,8 +20,20 @@ namespace MatriculaWPF.DAL
                 }
                 return false;
         }
+        public static void Remover(Mentor mentor)
+        {
+            _context.Mentores.Remove(mentor);
+            _context.SaveChanges();
+        }
+        public static void Alterar(Mentor mentor)
+        {
+            _context.Mentores.Update(mentor);
+            _context.SaveChanges();
+        }
         public static List<Mentor> Listar() => _context.Mentores.ToList();
         public static Mentor BuscarMentorPorCpf(string cpf) => _context.Mentores.Where(m => m.Cpf == cpf)
+                    .FirstOrDefault();
+        public static Mentor BuscarMentorPorId(int id) => _context.Mentores.Where(m => m.Id == id)
                     .FirstOrDefault();
     }
 }

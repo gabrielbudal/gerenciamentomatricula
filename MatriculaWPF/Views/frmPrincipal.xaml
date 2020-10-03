@@ -14,6 +14,10 @@
             <MenuItem Header="_Cadastrar">
                 <MenuItem x:Name="menuCadastrarDisciplina" Header="_Disciplina" Click="menuCadastrarDisciplina_Click"/>
                 <MenuItem x:Name="menuCadastrarMentor" Header="_Mentor" Click="menuCadastrarMentor_Click"/>
+                <MenuItem x:Name="menuCadastrarRelacionamentoMentorDisciplina" Header="_Relacionamento" Click="menuCadastrarRelacionamentoMentorDisciplina_Click"/>
+                <MenuItem x:Name="menuCadastrarNivel" Header="_Nivel" Click="menuCadastrarNivel_Click"/>
+                <MenuItem x:Name="menuCadastrarAluno" Header="_Aluno" Click="menuCadastrarAluno_Click"/>
+                <MenuItem x:Name="menuCadastrarHistoricoAluno" Header="_Historico do Aluno" Click="menuCadastrarHistoricoAluno_Click"/>
             </MenuItem>
             <MenuItem Header="_Sobre"/>
         </Menu>

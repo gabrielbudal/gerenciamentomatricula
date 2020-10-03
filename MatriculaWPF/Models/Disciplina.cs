@@ -20,7 +20,7 @@ namespace MatriculaWPF.Models
         public string Descricao { get; set; }
         public override string ToString()
         {
-            return $"Nome: {Nome} | Descrição: {Descricao}";
+            return $"{Nome} - {Descricao}";
         }
     }
 }

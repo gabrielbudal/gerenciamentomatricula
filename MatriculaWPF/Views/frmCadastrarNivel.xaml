@@ -1,23 +1,22 @@
-﻿<Window x:Class="MatriculaWPF.Views.frmCadastrarDisciplina"
+﻿<Window x:Class="MatriculaWPF.Views.frmCadastrarNivel"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MatriculaWPF.Views"
         mc:Ignorable="d"
-        Title="Manter Disciplina" Height="450" Width="800" WindowStartupLocation="CenterScreen" FontSize="16" FontWeight="Medium">
+        Title="frmCadastrarNivel" Height="450" Width="800">
     <Grid>
         <TextBox x:Name="txtCriadoEm" HorizontalAlignment="Left" Margin="286,226,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" IsEnabled="False"/>
         <TextBox x:Name="txtId" HorizontalAlignment="Left" Margin="286,44,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" IsEnabled="False"/>
         <Button x:Name="btnCadastrar" Content="Cadastrar" HorizontalAlignment="Left" Margin="582,288,0,0" VerticalAlignment="Top" Click="btnCadastrar_Click" Height="56" Width="135"/>
-        <Label Content="Manter Produto
-               " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label Content="Nome:       " HorizontalAlignment="Left" Margin="166,104,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="Manter Nível" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Nível" HorizontalAlignment="Left" Margin="166,104,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Label Content="Id:" HorizontalAlignment="Left" Margin="166,40,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.959,1.855" FontSize="20"/>
         <Label Content="Criado Em:" HorizontalAlignment="Left" Margin="166,222,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.959,1.855" FontSize="20"/>
-        <Label Content="Descrição:" HorizontalAlignment="Left" Margin="166,163,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.959,1.855" Width="164" FontSize="20"/>
+        <Label Content="Ordenação:" HorizontalAlignment="Left" Margin="166,163,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.959,1.855" Width="164" FontSize="20"/>
         <TextBox x:Name="txtNome" HorizontalAlignment="Left" Margin="286,108,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="320"/>
-        <TextBox x:Name="txtDescricao" HorizontalAlignment="Left" Margin="286,169,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="320"/>
+        <TextBox x:Name="txtOrdenacao" HorizontalAlignment="Left" Margin="286,169,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="320"/>
         <Button x:Name="btnBuscar" Content="Buscar" HorizontalAlignment="Left" Margin="400,288,0,0" VerticalAlignment="Top" Click="btnBuscar_Click" Height="56" Width="135"/>
         <Button x:Name="btnRemover" Content="Remover" HorizontalAlignment="Left" Margin="220,288,0,0" VerticalAlignment="Top" Click="btnRemover_Click" Height="56" Width="135" IsEnabled="False"/>
         <Button x:Name="btnAlterar" Content="Alterar" HorizontalAlignment="Left" Margin="52,288,0,0" VerticalAlignment="Top" Click="btnAlterar_Click" Height="56" Width="135" IsEnabled="False"/>

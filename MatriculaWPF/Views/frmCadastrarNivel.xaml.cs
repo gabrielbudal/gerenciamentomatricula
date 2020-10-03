@@ -1,6 +1,5 @@
 ﻿using MatriculaWPF.DAL;
 using MatriculaWPF.Models;
-using MatriculaWPF.Utils;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,90 +15,80 @@ using System.Windows.Shapes;
 namespace MatriculaWPF.Views
 {
     /// <summary>
-    /// Interaction logic for frmCadastrarMentor.xaml
+    /// Interaction logic for frmCadastrarNivel.xaml
     /// </summary>
-    public partial class frmCadastrarMentor : Window
+    public partial class frmCadastrarNivel : Window
     {
-        private Mentor mentor;
-        public frmCadastrarMentor()
+        private Nivel nivel;
+        public frmCadastrarNivel()
         {
             InitializeComponent();
             txtNome.Focus();
         }
         private void btnCadastrar_Click(object sender, RoutedEventArgs e)
         {
-            if(!string.IsNullOrEmpty(txtNome.Text) && !string.IsNullOrWhiteSpace(txtCpf.Text))
+            if (!string.IsNullOrEmpty(txtNome.Text))
             {
-                mentor = new Mentor
+                nivel = new Nivel
                 {
                     Nome = txtNome.Text,
-                    Cpf = txtCpf.Text
+                    Ordenacao = Convert.ToInt32(txtOrdenacao.Text)
                 };
-                if (Validacao.ValidarCpf(mentor.Cpf))
+                if (NivelDAO.Cadastrar(nivel))
                 {
-                    if (MentorDAO.Cadastrar(mentor))
-                    {
-                        MessageBox.Show("Mentor cadastrado com sucesso!", "Matricula WPF",
-                            MessageBoxButton.OK, MessageBoxImage.Information);
-                        LimparFormulario();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Este mentor já existe", "Matricula WPF",
-                            MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
+                    MessageBox.Show("Nível cadastrado com sucesso!", "Matricula WPF",
+                        MessageBoxButton.OK, MessageBoxImage.Information);
+                    LimparFormulario();
                 }
                 else
                 {
-                    MessageBox.Show("CPF inválido", "Matricula WPF",
-                            MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Este nível já existe", "Matricula WPF",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
             {
-                MessageBox.Show("Preencha todos os campos!", "Matricula WPF",
+                MessageBox.Show("Preencha o campo nome!", "Matricula WPF",
                         MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
-        private void LimparFormulario ()
+        private void LimparFormulario()
         {
             txtId.Clear();
             txtNome.Clear();
-            txtCpf.Clear();
+            txtOrdenacao.Clear();
             txtCriadoEm.Clear();
             txtNome.Focus();
             btnCadastrar.IsEnabled = true;
             btnAlterar.IsEnabled = false;
             btnRemover.IsEnabled = false;
         }
-
         private void btnBuscar_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(txtCpf.Text))
+            if (!string.IsNullOrWhiteSpace(txtNome.Text))
             {
-                mentor = MentorDAO.BuscarMentorPorCpf(txtCpf.Text);
-                if (mentor != null)
+                nivel = NivelDAO.BuscarNivelPorNome(txtNome.Text);
+                if (nivel != null)
                 {
                     btnCadastrar.IsEnabled = false;
                     btnAlterar.IsEnabled = true;
                     btnRemover.IsEnabled = true;
 
-                    txtId.Text = mentor.Id.ToString();
-                    txtNome.Text = mentor.Nome;
-                    txtCpf.Text = mentor.Cpf.ToString();
-                    txtCriadoEm.Text = mentor.CriadoEm.ToString();
+                    txtId.Text = nivel.Id.ToString();
+                    txtNome.Text = nivel.Nome;
+                    txtOrdenacao.Text = nivel.Ordenacao.ToString();
+                    txtCriadoEm.Text = nivel.CriadoEm.ToString();
                 }
                 else
                 {
-                    MessageBox.Show("Esse mentor não existe!!!", "Vendas WPF",
+                    MessageBox.Show("Este nível não existe!!!", "Vendas WPF",
                         MessageBoxButton.OK, MessageBoxImage.Error);
                     LimparFormulario();
                 }
             }
             else
             {
-                MessageBox.Show("Preencha o campo do CPF!!!", "Vendas WPF",
+                MessageBox.Show("Preencha o campo nome!!!", "Vendas WPF",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -107,18 +96,17 @@ namespace MatriculaWPF.Views
         {
             LimparFormulario();
         }
-
         private void btnRemover_Click(object sender, RoutedEventArgs e)
         {
-            if (mentor != null)
+            if (nivel != null)
             {
-                MentorDAO.Remover(mentor);
-                MessageBox.Show("O mentor foi removido com sucesso!!!", "Vendas WPF",
+                NivelDAO.Remover(nivel);
+                MessageBox.Show("Nível foi removido com sucesso!!!", "Vendas WPF",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
-                MessageBox.Show("O mentor não foi removido!!!", "Vendas WPF",
+                MessageBox.Show("O nível não foi removida!!!", "Vendas WPF",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
             LimparFormulario();
@@ -126,17 +114,17 @@ namespace MatriculaWPF.Views
 
         private void btnAlterar_Click(object sender, RoutedEventArgs e)
         {
-            if (mentor != null)
+            if (nivel != null)
             {
-                mentor.Nome = txtNome.Text;
-                mentor.Cpf = txtCpf.Text;
-                MentorDAO.Alterar(mentor);
-                MessageBox.Show("O mentor foi alterado com sucesso!!!", "Vendas WPF",
+                nivel.Nome = txtNome.Text;
+                nivel.Ordenacao = Convert.ToInt32(txtOrdenacao.Text);
+                NivelDAO.Alterar(nivel);
+                MessageBox.Show("O nível foi alterada com sucesso!!!", "Vendas WPF",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
-                MessageBox.Show("O mentor não foi alterado!!!", "Vendas WPF",
+                MessageBox.Show("O nível não foi alterado!!!", "Vendas WPF",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
             LimparFormulario();

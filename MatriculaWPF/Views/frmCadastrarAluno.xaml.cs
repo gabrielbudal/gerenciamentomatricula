@@ -16,36 +16,36 @@ using System.Windows.Shapes;
 namespace MatriculaWPF.Views
 {
     /// <summary>
-    /// Interaction logic for frmCadastrarMentor.xaml
+    /// Interaction logic for frmCadastrarAluno.xaml
     /// </summary>
-    public partial class frmCadastrarMentor : Window
+    public partial class frmCadastrarAluno : Window
     {
-        private Mentor mentor;
-        public frmCadastrarMentor()
+        private Aluno aluno;
+        public frmCadastrarAluno()
         {
             InitializeComponent();
             txtNome.Focus();
         }
         private void btnCadastrar_Click(object sender, RoutedEventArgs e)
         {
-            if(!string.IsNullOrEmpty(txtNome.Text) && !string.IsNullOrWhiteSpace(txtCpf.Text))
+            if (!string.IsNullOrEmpty(txtNome.Text) && !string.IsNullOrWhiteSpace(txtCpf.Text))
             {
-                mentor = new Mentor
+                aluno = new Aluno
                 {
                     Nome = txtNome.Text,
                     Cpf = txtCpf.Text
                 };
-                if (Validacao.ValidarCpf(mentor.Cpf))
+                if (Validacao.ValidarCpf(aluno.Cpf))
                 {
-                    if (MentorDAO.Cadastrar(mentor))
+                    if (AlunoDAO.Cadastrar(aluno))
                     {
-                        MessageBox.Show("Mentor cadastrado com sucesso!", "Matricula WPF",
+                        MessageBox.Show("Aluno cadastrado com sucesso!", "Matricula WPF",
                             MessageBoxButton.OK, MessageBoxImage.Information);
                         LimparFormulario();
                     }
                     else
                     {
-                        MessageBox.Show("Este mentor já existe", "Matricula WPF",
+                        MessageBox.Show("Este aluno já existe", "Matricula WPF",
                             MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
@@ -61,8 +61,7 @@ namespace MatriculaWPF.Views
                         MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
-        private void LimparFormulario ()
+        private void LimparFormulario()
         {
             txtId.Clear();
             txtNome.Clear();
@@ -73,26 +72,25 @@ namespace MatriculaWPF.Views
             btnAlterar.IsEnabled = false;
             btnRemover.IsEnabled = false;
         }
-
         private void btnBuscar_Click(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(txtCpf.Text))
             {
-                mentor = MentorDAO.BuscarMentorPorCpf(txtCpf.Text);
-                if (mentor != null)
+                aluno = AlunoDAO.BuscarAlunoPorCpf(txtCpf.Text);
+                if (aluno != null)
                 {
                     btnCadastrar.IsEnabled = false;
                     btnAlterar.IsEnabled = true;
                     btnRemover.IsEnabled = true;
 
-                    txtId.Text = mentor.Id.ToString();
-                    txtNome.Text = mentor.Nome;
-                    txtCpf.Text = mentor.Cpf.ToString();
-                    txtCriadoEm.Text = mentor.CriadoEm.ToString();
+                    txtId.Text = aluno.Id.ToString();
+                    txtNome.Text = aluno.Nome;
+                    txtCpf.Text = aluno.Cpf.ToString();
+                    txtCriadoEm.Text = aluno.CriadoEm.ToString();
                 }
                 else
                 {
-                    MessageBox.Show("Esse mentor não existe!!!", "Vendas WPF",
+                    MessageBox.Show("Esse aluno não existe!!!", "Vendas WPF",
                         MessageBoxButton.OK, MessageBoxImage.Error);
                     LimparFormulario();
                 }
@@ -107,18 +105,17 @@ namespace MatriculaWPF.Views
         {
             LimparFormulario();
         }
-
         private void btnRemover_Click(object sender, RoutedEventArgs e)
         {
-            if (mentor != null)
+            if (aluno != null)
             {
-                MentorDAO.Remover(mentor);
-                MessageBox.Show("O mentor foi removido com sucesso!!!", "Vendas WPF",
+                AlunoDAO.Remover(aluno);
+                MessageBox.Show("O aluno foi removido com sucesso!!!", "Vendas WPF",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
-                MessageBox.Show("O mentor não foi removido!!!", "Vendas WPF",
+                MessageBox.Show("O aluno não foi removido!!!", "Vendas WPF",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
             LimparFormulario();
@@ -126,17 +123,17 @@ namespace MatriculaWPF.Views
 
         private void btnAlterar_Click(object sender, RoutedEventArgs e)
         {
-            if (mentor != null)
+            if (aluno != null)
             {
-                mentor.Nome = txtNome.Text;
-                mentor.Cpf = txtCpf.Text;
-                MentorDAO.Alterar(mentor);
-                MessageBox.Show("O mentor foi alterado com sucesso!!!", "Vendas WPF",
+                aluno.Nome = txtNome.Text;
+                aluno.Cpf = txtCpf.Text;
+                AlunoDAO.Alterar(aluno);
+                MessageBox.Show("O aluno foi alterado com sucesso!!!", "Vendas WPF",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
-                MessageBox.Show("O mentor não foi alterado!!!", "Vendas WPF",
+                MessageBox.Show("O aluno não foi alterado!!!", "Vendas WPF",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
             LimparFormulario();
