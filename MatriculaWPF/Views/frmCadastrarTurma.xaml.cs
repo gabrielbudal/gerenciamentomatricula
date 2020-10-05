@@ -48,7 +48,6 @@ namespace MatriculaWPF.Views
             turma = new Turma();
             AdministracaoHorario a = new AdministracaoHorario();
             Nivel n = new Nivel();
-            turma.Descricao = txtDescricao.Text;
 
             //colocar throw exception aqui para quando nao vir informado dados na combobox
             a.Id = (int)cboAdms.SelectedValue;
@@ -63,6 +62,7 @@ namespace MatriculaWPF.Views
                 if (a != null)
                 {
                     turma.AdministracaoHorario = a;
+                    //turma.Descricao = "Turma referente ao nível: " + n.Nome;
                     if (TurmaDAO.Cadastrar(turma))
                     {
                         MessageBox.Show("Atrelamento realizado com sucesso!", "Matricula WPF",

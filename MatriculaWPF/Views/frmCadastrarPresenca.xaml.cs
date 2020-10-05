@@ -15,31 +15,23 @@ using System.Windows.Shapes;
 namespace MatriculaWPF.Views
 {
     /// <summary>
-    /// Interaction logic for frmCadastrarGrade.xaml
+    /// Interaction logic for frmCadastrarPresenca.xaml
     /// </summary>
-    public partial class frmCadastrarGrade : Window
+    public partial class frmCadastrarPresenca : Window
     {
         private Grade grade;
-        public frmCadastrarGrade()
+        public frmCadastrarPresenca()
         {
             InitializeComponent();
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //Carregar os dados de turma
-            cboTurmas.ItemsSource = TurmaDAO.Listar();
+            //Carregar os dados da grade
+            cboGrades.ItemsSource = GradeDAO.Listar();
             //cboAdms.DisplayMemberPath = "Nome";
-            cboTurmas.SelectedValuePath = "Id";
+            cboGrades.SelectedValuePath = "Id";
 
-            //Carregar os dados de mentores disciplinas
-            cboMentorDisciplinas.ItemsSource = MentorDisciplinaDAO.Listar();
-            //cboNiveis.DisplayMemberPath = "Nome";
-            cboMentorDisciplinas.SelectedValuePath = "Id";
 
-            //Carregar os dados de dias
-            cboDias.ItemsSource = DiaDAO.Listar();
-            //cboNiveis.DisplayMemberPath = "Nome";
-            cboDias.SelectedValuePath = "Id";
         }
         private void btnAdicionar_Click(object sender, RoutedEventArgs e)
         {
@@ -54,13 +46,11 @@ namespace MatriculaWPF.Views
             Turma t = new Turma();
             MentorDisciplina md = new MentorDisciplina();
             Dia d = new Dia();
-            grade.HorarioInicio = txtHorarioInicio.Text;
-            grade.HorarioFim = txtHorarioFim.Text;
 
             //colocar throw exception aqui para quando nao vir informado dados na combobox
-            t.Id = (int)cboTurmas.SelectedValue;
-            md.Id = (int)cboMentorDisciplinas.SelectedValue;
-            d.Id = (int)cboDias.SelectedValue;
+            //t.Id = (int)cboTurmas.SelectedValue;
+            //md.Id = (int)cboMentorDisciplinas.SelectedValue;
+            //d.Id = (int)cboDias.SelectedValue;
 
             t = TurmaDAO.BuscarTurmaPorId(t.Id);
             if (t != null)
@@ -75,7 +65,6 @@ namespace MatriculaWPF.Views
                     if (d != null)
                     {
                         grade.Dia = d;
-                        //grade.Descricao = d.Descricao + " - " + t.Descricao + " " + " - " + md.Descricao;
                         if (GradeDAO.Cadastrar(grade))
                         {
                             MessageBox.Show("Atrelamento realizado com sucesso!", "Matricula WPF",
@@ -89,7 +78,7 @@ namespace MatriculaWPF.Views
                             LimparFormulario();
                         }
                     }
-                    else 
+                    else
                     {
                         MessageBox.Show("Dia não localizado", "Matricula WPF",
                         MessageBoxButton.OK, MessageBoxImage.Error);
@@ -120,8 +109,22 @@ namespace MatriculaWPF.Views
             //btnCadastrar.IsEnabled = true;
             //btnAlterar.IsEnabled = false;
             //btnRemover.IsEnabled = false;
-            txtHorarioInicio.Clear();
-            txtHorarioFim.Clear();
+            //txtHorarioInicio.Clear();
+            //txtHorarioFim.Clear();
+        }
+
+        private void cboGrades_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //Carregar os dados de alunos
+            Grade g = new Grade();
+            g.Id = (int)cboGrades.SelectedValue;
+            g = GradeDAO.BuscarGradePorId(g.Id);
+            //ta.
+
+            //ConjuntoAluno ca = new ConjuntoAluno();
+            //ca.Turma = g.Turma;
+            int idturma = g.Turma.Id;
+            cboConjuntoAlunos.ItemsSource = ConjuntoAlunoDAO.BuscarConjuntoAlunoPorIdTurma(idturma);
         }
     }
 }

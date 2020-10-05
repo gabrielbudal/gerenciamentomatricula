@@ -1,4 +1,5 @@
 ﻿using MatriculaWPF.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace MatriculaWPF.DAL
             }
             return false;
         }
-        public static List<MentorDisciplina> Listar() => _context.MentorDisciplinas.ToList();
+        public static List<MentorDisciplina> Listar() => _context.MentorDisciplinas.Include(d => d.Disciplina).Include(m => m.Mentor).ToList();
         public static MentorDisciplina BuscarMentorDisciplina(MentorDisciplina mentordisciplina) => _context.MentorDisciplinas.Where(md => md.Disciplina == mentordisciplina.Disciplina && md.Mentor == mentordisciplina.Mentor)
                     .FirstOrDefault();
         public static MentorDisciplina BuscarMentorDisciplinaPorId(int id) => _context.MentorDisciplinas.Where(md => md.Id == id)

@@ -1,0 +1,19 @@
+﻿<Window x:Class="MatriculaWPF.Views.frmCadastrarPresenca"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MatriculaWPF.Views"
+        mc:Ignorable="d"
+        Title="frmCadastrarPresenca" Height="450" Width="800" Loaded="Window_Loaded">
+    <Grid>
+        <Button x:Name="btnAdicionar" Content="Adicionar" HorizontalAlignment="Left" Margin="645,135,0,0" VerticalAlignment="Top" Height="34" Width="74" Click="btnAdicionar_Click" RenderTransformOrigin="-0.386,0.434"/>
+        <ComboBox x:Name="cboGrades" HorizontalAlignment="Left" Margin="133,119,0,0" VerticalAlignment="Top" Width="243" SelectionChanged="cboGrades_SelectionChanged"/>
+        <Label Content="Cadastrar Presença:" HorizontalAlignment="Left" Height="47" Margin="133,31,0,0" VerticalAlignment="Top" Width="315"/>
+        <Label Content="Grade:" HorizontalAlignment="Left" Height="30" Margin="186,88,0,0" VerticalAlignment="Top" Width="104"/>
+        <Label Content="Alunos:" HorizontalAlignment="Left" Height="31" Margin="448,72,0,0" VerticalAlignment="Top" Width="132"/>
+        <ComboBox x:Name="cboConjuntoAlunos" HorizontalAlignment="Left" Margin="462,110,0,0" VerticalAlignment="Top" Width="120"/>
+        <RadioButton Content="Presente" HorizontalAlignment="Left" Margin="645,81,0,0" VerticalAlignment="Top"/>
+        <RadioButton Content="Falta" HorizontalAlignment="Left" Margin="645,106,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>

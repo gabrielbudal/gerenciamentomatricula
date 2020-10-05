@@ -14,12 +14,12 @@ namespace MatriculaWPF.Models
             Disciplina = new Disciplina();
         }
         //Atributos, propriedades e características
-        public string Descricao { get; set; }
+        //public string Descricao { get; set; }
         public Mentor Mentor { get; set; }
         public Disciplina Disciplina { get; set; }
         public override string ToString()
         {
-            return $"{Descricao}";
+            return Mentor.Nome + " (" + Mentor.Cpf + ") " + Disciplina.Nome;
         }
     }
 }

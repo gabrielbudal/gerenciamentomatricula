@@ -50,7 +50,6 @@ namespace MatriculaWPF.Views
                 mentordisciplina = new MentorDisciplina();
                 Mentor m = new Mentor();
                 Disciplina d = new Disciplina();
-                mentordisciplina.Descricao = txtDescricao.Text;
 
                 //colocar throw exception aqui para quando nao vir informado dados na combobox
                 m.Id = (int)cboMentores.SelectedValue;
@@ -65,6 +64,7 @@ namespace MatriculaWPF.Views
                     if (d != null)
                     {
                         mentordisciplina.Disciplina = d;
+                        //mentordisciplina.Descricao = m.Nome + "(" + m.Cpf + ")" + " - " + d.Nome;
                         if (MentorDisciplinaDAO.Cadastrar(mentordisciplina))
                         {
                         MessageBox.Show("Atrelamento realizado com sucesso!", "Matricula WPF",

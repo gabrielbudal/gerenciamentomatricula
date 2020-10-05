@@ -15,13 +15,18 @@ namespace MatriculaWPF.Models
             Ano = dataatual.Year;
         }
         //Atributos, propriedades e características
-        public string Descricao { get; set; }
+        //public string Descricao { get; set; }
         public AdministracaoHorario AdministracaoHorario { get; set; }
         public int Ano { get; set; }
         public Nivel Nivel { get; set; }
         public override string ToString()
         {
-            return $"{Descricao} - {Ano}";
+            return $"{Nivel.Nome} - {Ano}";
+        }
+
+        internal object Select(Func<object, object> p)
+        {
+            throw new NotImplementedException();
         }
     }
 }

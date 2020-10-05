@@ -11,11 +11,17 @@ namespace MatriculaWPF.Models
         {
             Turma = new Turma();
             Aluno = new Aluno();
+            //Descricao = "Turma " + Turma.Descricao;
             //Alunos = new List<Aluno>();
         }
         //Atributos, propriedades e características
         public Turma Turma { get; set; }
         public Aluno Aluno { get; set; }
+        //public string Descricao { get; set; }
         //public List<Aluno> Alunos { get; set; }
+        public override string ToString()
+        {
+            return Aluno.Nome + " (" + Aluno.Cpf + ")";
+        }
     }
 }

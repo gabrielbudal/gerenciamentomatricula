@@ -100,5 +100,11 @@ namespace MatriculaWPF.Views
             frmCadastrarGrade frm = new frmCadastrarGrade();
             frm.ShowDialog();
         }
+
+        private void menuCadastrarPresenca_Click(object sender, RoutedEventArgs e)
+        {
+            frmCadastrarPresenca frm = new frmCadastrarPresenca();
+            frm.ShowDialog();
+        }
     }
 }

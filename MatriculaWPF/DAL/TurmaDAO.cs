@@ -1,4 +1,5 @@
 ﻿using MatriculaWPF.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +20,8 @@ namespace MatriculaWPF.DAL
             }
             return false;
         }
-        public static List<Turma> Listar() => _context.Turmas.ToList();
-        public static Turma BuscarTurma(Turma turma) => _context.Turmas.Where(t => t.AdministracaoHorario == turma.AdministracaoHorario && t.Nivel == turma.Nivel)
+        public static List<Turma> Listar() => _context.Turmas.Include(n => n.Nivel).ToList();
+        public static Turma BuscarTurma(Turma turma) => _context.Turmas.Include(n => n.Nivel).Where(t => t.AdministracaoHorario == turma.AdministracaoHorario && t.Nivel == turma.Nivel)
                     .FirstOrDefault();
         public static Turma BuscarTurmaPorId(int id) => _context.Turmas.Where(t => t.Id == id)
                     .FirstOrDefault();

@@ -60,7 +60,7 @@ namespace MatriculaWPF.Views
         {
             itens.Add(new
             {
-                Descricao = turma.Descricao.ToString(),
+                //Descricao = turma.Descricao.ToString(),
                 Nome = aluno.Nome.ToString(),
                 Cpf = aluno.Cpf.ToString()
             });
@@ -76,6 +76,7 @@ namespace MatriculaWPF.Views
                 ConjuntoAluno newconjuntoaluno = new ConjuntoAluno();
                 newconjuntoaluno.Aluno = ca;
                 conjuntoaluno.Turma = TurmaDAO.BuscarTurmaPorId(idTurma);
+                //newconjuntoaluno.Descricao = ca.Nome + " (" + ca.Cpf + ")";
                 newconjuntoaluno.Turma = conjuntoaluno.Turma;
                 ConjuntoAlunoDAO.Cadastrar(newconjuntoaluno);
             }

@@ -13,7 +13,5 @@
         <Label Content="Cadastrar Relacionamento Mentor x Disciplina" HorizontalAlignment="Left" Height="47" Margin="133,31,0,0" VerticalAlignment="Top" Width="315"/>
         <Label Content="Mentores:" HorizontalAlignment="Left" Height="31" Margin="201,78,0,0" VerticalAlignment="Top" Width="104"/>
         <Label Content="Disciplinas:" HorizontalAlignment="Left" Height="31" Margin="364,76,0,0" VerticalAlignment="Top" Width="104"/>
-        <TextBox x:Name="txtDescricao" HorizontalAlignment="Left" Margin="290,217,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="320"/>
-        <Label Content="Descrição:" HorizontalAlignment="Left" Height="32" Margin="176,169,0,0" VerticalAlignment="Top" Width="87"/>
     </Grid>
 </Window>

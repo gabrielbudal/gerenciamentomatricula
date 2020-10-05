@@ -1,4 +1,5 @@
 ﻿using MatriculaWPF.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,10 +20,15 @@ namespace MatriculaWPF.DAL
             }
             return false;
         }
-        public static List<Grade> Listar() => _context.Grades.ToList();
-        public static Grade BuscarGrade(Grade grade) => _context.Grades.Where(g => g.Turma == grade.Turma && g.MentorDisciplina == grade.MentorDisciplina && g.Dia == grade.Dia)
+        public static List<Grade> Listar() => _context.Grades
+            .Include(d => d.Dia)
+            .Include(t => t.Turma)
+                .ThenInclude(n => n.Nivel)
+            .ToList();
+        public static Grade BuscarGrade(Grade grade) => _context.Grades.Where(g => g.Turma == grade.Turma && g.MentorDisciplina == grade.MentorDisciplina && g.Dia == grade.Dia && g.HorarioInicio == grade.HorarioInicio && g.HorarioFim == grade.HorarioFim)
                     .FirstOrDefault();
-        public static Grade BuscarTurmaPorId(int id) => _context.Grades.Where(g => g.Id == id)
+        public static Grade BuscarGradePorId(int id) => _context.Grades.Include(t => t.Turma)
+                    .Where(g => g.Id == id)
                     .FirstOrDefault();
     }
 }
