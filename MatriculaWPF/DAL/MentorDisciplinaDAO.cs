@@ -22,5 +22,11 @@ namespace MatriculaWPF.DAL
         public static List<MentorDisciplina> Listar() => _context.MentorDisciplinas.ToList();
         public static MentorDisciplina BuscarMentorDisciplina(MentorDisciplina mentordisciplina) => _context.MentorDisciplinas.Where(md => md.Disciplina == mentordisciplina.Disciplina && md.Mentor == mentordisciplina.Mentor)
                     .FirstOrDefault();
+        public static MentorDisciplina BuscarMentorDisciplinaPorId(int id) => _context.MentorDisciplinas.Where(md => md.Id == id)
+                    .FirstOrDefault();
+        //public static MentorDisciplina BuscarConteudosMentorDisciplina(int id)
+        //{
+
+        //}
     }
 }

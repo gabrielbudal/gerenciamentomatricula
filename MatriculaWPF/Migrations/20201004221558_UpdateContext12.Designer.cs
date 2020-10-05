@@ -4,14 +4,16 @@ using MatriculaWPF.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MatriculaWPF.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20201004221558_UpdateContext12")]
+    partial class UpdateContext12
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -146,45 +148,6 @@ namespace MatriculaWPF.Migrations
                     b.ToTable("Disciplinas");
                 });
 
-            modelBuilder.Entity("MatriculaWPF.Models.Grade", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Ativo")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("CriadoEm")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("DiaId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("HorarioFim")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("HorarioInicio")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("MentorDisciplinaId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TurmaId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DiaId");
-
-                    b.HasIndex("MentorDisciplinaId");
-
-                    b.HasIndex("TurmaId");
-
-                    b.ToTable("Grades");
-                });
-
             modelBuilder.Entity("MatriculaWPF.Models.HistoricoAluno", b =>
                 {
                     b.Property<int>("Id")
@@ -249,9 +212,6 @@ namespace MatriculaWPF.Migrations
 
                     b.Property<DateTime>("CriadoEm")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Descricao")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("DisciplinaId")
                         .HasColumnType("int");
@@ -331,21 +291,6 @@ namespace MatriculaWPF.Migrations
                     b.HasOne("MatriculaWPF.Models.Aluno", "Aluno")
                         .WithMany()
                         .HasForeignKey("AlunoId");
-
-                    b.HasOne("MatriculaWPF.Models.Turma", "Turma")
-                        .WithMany()
-                        .HasForeignKey("TurmaId");
-                });
-
-            modelBuilder.Entity("MatriculaWPF.Models.Grade", b =>
-                {
-                    b.HasOne("MatriculaWPF.Models.Dia", "Dia")
-                        .WithMany()
-                        .HasForeignKey("DiaId");
-
-                    b.HasOne("MatriculaWPF.Models.MentorDisciplina", "MentorDisciplina")
-                        .WithMany()
-                        .HasForeignKey("MentorDisciplinaId");
 
                     b.HasOne("MatriculaWPF.Models.Turma", "Turma")
                         .WithMany()

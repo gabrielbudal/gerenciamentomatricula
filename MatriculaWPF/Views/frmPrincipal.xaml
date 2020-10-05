@@ -23,6 +23,9 @@
                 <MenuItem x:Name="menuCadastrarAdministracaoHorario" Header="_Administração Horario" Click="menuCadastrarAdministracaoHorario_Click"/>
                 <MenuItem x:Name="menuCadastrarTurma" Header="_Turma" Click="menuCadastrarTurma_Click"/>
                 <MenuItem x:Name="menuCadastrarConjuntoAlunos" Header="_Conjunto Alunos" Click="menuCadastrarConjuntoAlunos_Click"/>
+                <Separator/>
+                <MenuItem x:Name="menuCadastrarDia" Header="_Dia" Click="menuCadastrarDia_Click"/>
+                <MenuItem x:Name="menuCadastrarGrade" Header="_Grade" Click="menuCadastrarGrade_Click"/>
             </MenuItem>
             <MenuItem Header="_Sobre"/>
         </Menu>

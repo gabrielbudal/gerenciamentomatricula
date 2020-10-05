@@ -34,16 +34,23 @@ namespace MatriculaWPF.Views
                     Nome = txtNome.Text,
                     Ordenacao = Convert.ToInt32(txtOrdenacao.Text)
                 };
-                if (NivelDAO.Cadastrar(nivel))
-                {
-                    MessageBox.Show("Nível cadastrado com sucesso!", "Matricula WPF",
-                        MessageBoxButton.OK, MessageBoxImage.Information);
-                    LimparFormulario();
+                if (NivelDAO.BuscarNivelPorOrdenacao(nivel.Ordenacao) == null) { 
+                    if (NivelDAO.Cadastrar(nivel))
+                    {
+                        MessageBox.Show("Nível cadastrado com sucesso!", "Matricula WPF",
+                            MessageBoxButton.OK, MessageBoxImage.Information);
+                        LimparFormulario();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Este nível já existe", "Matricula WPF",
+                            MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Este nível já existe", "Matricula WPF",
-                        MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Esta ordenação já existe", "Matricula WPF",
+                            MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else

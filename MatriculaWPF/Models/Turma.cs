@@ -21,7 +21,7 @@ namespace MatriculaWPF.Models
         public Nivel Nivel { get; set; }
         public override string ToString()
         {
-            return $"{Nivel} - {Descricao} - {Ano}";
+            return $"{Descricao} - {Ano}";
         }
     }
 }

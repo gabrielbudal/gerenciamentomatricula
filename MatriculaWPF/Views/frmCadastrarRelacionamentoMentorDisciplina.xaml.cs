@@ -50,6 +50,7 @@ namespace MatriculaWPF.Views
                 mentordisciplina = new MentorDisciplina();
                 Mentor m = new Mentor();
                 Disciplina d = new Disciplina();
+                mentordisciplina.Descricao = txtDescricao.Text;
 
                 //colocar throw exception aqui para quando nao vir informado dados na combobox
                 m.Id = (int)cboMentores.SelectedValue;
@@ -73,21 +74,21 @@ namespace MatriculaWPF.Views
                         else
                         {
                         MessageBox.Show("Atrelamento já existente!", "Matricula WPF",
-                        MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBoxButton.OK, MessageBoxImage.Error);
                         LimparFormulario();
                         }
                     }
                     else
                     {
                     MessageBox.Show("Disciplina não localizada", "Matricula WPF",
-                        MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBoxButton.OK, MessageBoxImage.Error);
                     LimparFormulario();
                 }
                 }
                 else
                 {
                 MessageBox.Show("Mentor não localizado!", "Matricula WPF",
-                        MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBoxButton.OK, MessageBoxImage.Error);
                 LimparFormulario();
             }
         }

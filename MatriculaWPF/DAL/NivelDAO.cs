@@ -34,5 +34,7 @@ namespace MatriculaWPF.DAL
                     .FirstOrDefault();
         public static Nivel BuscarNivelPorId(int id) => _context.Niveis.Where(n => n.Id == id)
                     .FirstOrDefault();
+        public static Nivel BuscarNivelPorOrdenacao(int ordenacao) => _context.Niveis.Where(n => n.Ordenacao == ordenacao)
+                    .FirstOrDefault();
     }
 }

@@ -16,6 +16,8 @@ namespace MatriculaWPF.Models
         public DbSet<AdministracaoHorario> AdministracaoHorarios { get; set; }
         public DbSet<Turma> Turmas { get; set; }
         public DbSet<ConjuntoAluno> ConjuntoAlunos { get; set; }
+        public DbSet<Dia> Dias { get; set; }
+        public DbSet<Grade> Grades { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
