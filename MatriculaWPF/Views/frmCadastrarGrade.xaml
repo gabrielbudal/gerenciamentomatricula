@@ -7,17 +7,26 @@
         mc:Ignorable="d"
         Title="frmCadastrarGrade" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
-        <ComboBox x:Name="cboMentorDisciplinas" HorizontalAlignment="Left" Margin="274,110,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnAdicionar" Content="Adicionar" HorizontalAlignment="Left" Margin="645,135,0,0" VerticalAlignment="Top" Height="34" Width="74" Click="btnAdicionar_Click" RenderTransformOrigin="-0.386,0.434"/>
-        <ComboBox x:Name="cboTurmas" HorizontalAlignment="Left" Margin="111,110,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Cadastrar Grade:" HorizontalAlignment="Left" Height="47" Margin="133,31,0,0" VerticalAlignment="Top" Width="315"/>
-        <Label Content="Turma:" HorizontalAlignment="Left" Height="31" Margin="119,77,0,0" VerticalAlignment="Top" Width="104"/>
-        <Label Content="Mentor/Disciplina:" HorizontalAlignment="Left" Height="31" Margin="274,74,0,0" VerticalAlignment="Top" Width="126"/>
-        <TextBox x:Name="txtHorarioInicio" HorizontalAlignment="Left" Margin="290,217,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="320"/>
-        <Label Content="Horário início aula:" HorizontalAlignment="Left" Height="32" Margin="155,208,0,0" VerticalAlignment="Top" Width="145"/>
-        <Label Content="Dia:" HorizontalAlignment="Left" Height="31" Margin="448,72,0,0" VerticalAlignment="Top" Width="132"/>
-        <ComboBox x:Name="cboDias" HorizontalAlignment="Left" Margin="462,110,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Horário fim aula:" HorizontalAlignment="Left" Height="32" Margin="155,275,0,0" VerticalAlignment="Top" Width="145"/>
-        <TextBox x:Name="txtHorarioFim" HorizontalAlignment="Left" Margin="290,284,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="320"/>
+        <ComboBox x:Name="cboMentorDisciplinas" HorizontalAlignment="Left" Margin="290,150,0,0" VerticalAlignment="Top" Width="177" Height="51"/>
+        <Button x:Name="btnAdicionar" Content="Adicionar" HorizontalAlignment="Left" Margin="575,316,0,0" VerticalAlignment="Top" Height="48" Width="134" Click="btnAdicionar_Click" RenderTransformOrigin="-0.386,0.434" FontSize="20"/>
+        <ComboBox x:Name="cboTurmas" HorizontalAlignment="Left" Margin="67,150,0,0" VerticalAlignment="Top" Width="177" Height="51"/>
+        <Label Content="Cadastrar Grade:" HorizontalAlignment="Left" Height="47" Margin="67,27,0,0" VerticalAlignment="Top" Width="315" FontSize="20"/>
+        <Label Content="Turma:" HorizontalAlignment="Left" Height="42" Margin="74,98,0,0" VerticalAlignment="Top" Width="120" FontSize="20" RenderTransformOrigin="0.5,0.5">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.448"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <Label Content="Mentor/Disciplina:" HorizontalAlignment="Left" Height="47" Margin="290,95,0,0" VerticalAlignment="Top" Width="174" FontSize="20"/>
+        <TextBox x:Name="txtHorarioInicio" HorizontalAlignment="Center" Margin="0,262,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Height="52"/>
+        <Label Content="Horário início aula:" HorizontalAlignment="Left" Height="32" Margin="65,272,0,0" VerticalAlignment="Top" Width="179" FontSize="20"/>
+        <Label Content="Dia:" HorizontalAlignment="Left" Height="32" Margin="509,95,0,0" VerticalAlignment="Top" Width="132" FontSize="20"/>
+        <ComboBox x:Name="cboDias" HorizontalAlignment="Left" Margin="509,150,0,0" VerticalAlignment="Top" Width="177" Height="51"/>
+        <Label Content="Horário fim aula:" HorizontalAlignment="Left" Height="32" Margin="65,352,0,0" VerticalAlignment="Top" Width="174" FontSize="20" RenderTransformOrigin="0.434,0.595"/>
+        <TextBox x:Name="txtHorarioFim" HorizontalAlignment="Center" Margin="0,342,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Height="52"/>
     </Grid>
 </Window>

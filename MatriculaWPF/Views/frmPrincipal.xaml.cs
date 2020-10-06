@@ -103,7 +103,12 @@ namespace MatriculaWPF.Views
 
         private void menuCadastrarPresenca_Click(object sender, RoutedEventArgs e)
         {
-            frmCadastrarPresenca frm = new frmCadastrarPresenca();
+            frmManterPresenca frm = new frmManterPresenca();
+            frm.ShowDialog();
+        }
+        private void menuListarPresenca_Click(object sender, RoutedEventArgs e)
+        {
+            ListarPresenca frm = new ListarPresenca();
             frm.ShowDialog();
         }
     }

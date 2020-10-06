@@ -18,6 +18,7 @@ namespace MatriculaWPF.Models
         public DbSet<ConjuntoAluno> ConjuntoAlunos { get; set; }
         public DbSet<Dia> Dias { get; set; }
         public DbSet<Grade> Grades { get; set; }
+        public DbSet<Presenca> Presencas { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

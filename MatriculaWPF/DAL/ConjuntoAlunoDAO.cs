@@ -24,5 +24,13 @@ namespace MatriculaWPF.DAL
                    .ToList();
         public static List<ConjuntoAluno> BuscarConjuntoAlunoPorIdTurma(int idturma) => _context.ConjuntoAlunos.Include(a => a.Aluno).Where(ca => ca.Turma.Id == idturma)
                    .ToList();
+        public static ConjuntoAluno BuscarConjuntoAlunoPorId(int idconjuntoaluno) => _context.ConjuntoAlunos.Where(ca => ca.Id == idconjuntoaluno)
+                   .FirstOrDefault();
+        public static ConjuntoAluno BuscarConjuntoAlunoPorIdTabelas(int idconjuntoaluno) => _context.ConjuntoAlunos.Where(ca => ca.Id == idconjuntoaluno)
+                   .FirstOrDefault();
+
+        public static ConjuntoAluno BuscarConjuntoAlunoPorIdTabelas() => _context.ConjuntoAlunos
+            .Include(a => a.Aluno)
+            .FirstOrDefault();
     }
 }

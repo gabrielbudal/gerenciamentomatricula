@@ -7,11 +7,11 @@
         mc:Ignorable="d"
         Title="frmCadastrarRelacionamentoMentorDisciplina" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
-        <ComboBox x:Name="cboDisciplinas" HorizontalAlignment="Left" Margin="356,111,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnAdicionar" Content="Adicionar" HorizontalAlignment="Left" Margin="523,105,0,0" VerticalAlignment="Top" Height="34" Width="74" Click="btnAdicionar_Click" RenderTransformOrigin="-0.386,0.434"/>
-        <ComboBox x:Name="cboMentores" HorizontalAlignment="Left" Margin="193,111,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Cadastrar Relacionamento Mentor x Disciplina" HorizontalAlignment="Left" Height="47" Margin="133,31,0,0" VerticalAlignment="Top" Width="315"/>
-        <Label Content="Mentores:" HorizontalAlignment="Left" Height="31" Margin="201,78,0,0" VerticalAlignment="Top" Width="104"/>
-        <Label Content="Disciplinas:" HorizontalAlignment="Left" Height="31" Margin="364,76,0,0" VerticalAlignment="Top" Width="104"/>
+        <ComboBox x:Name="cboDisciplinas" HorizontalAlignment="Left" Margin="448,0,0,0" VerticalAlignment="Center" Width="230" Height="70"/>
+        <Button x:Name="btnAdicionar" Content="Adicionar" HorizontalAlignment="Left" Margin="616,314,0,0" VerticalAlignment="Top" Height="54" Width="111" Click="btnAdicionar_Click" RenderTransformOrigin="-0.386,0.434" FontSize="20"/>
+        <ComboBox x:Name="cboMentores" HorizontalAlignment="Left" Margin="112,0,0,0" VerticalAlignment="Center" Width="230" Height="70"/>
+        <Label Content="Cadastrar Relacionamento Mentor x Disciplina" HorizontalAlignment="Left" Height="47" Margin="27,25,0,0" VerticalAlignment="Top" Width="315" FontSize="20"/>
+        <Label Content="Mentores:" HorizontalAlignment="Left" Height="60" Margin="112,124,0,0" VerticalAlignment="Top" Width="288" FontSize="20"/>
+        <Label Content="Disciplinas:" HorizontalAlignment="Left" Height="56" Margin="448,124,0,0" VerticalAlignment="Top" Width="104" FontSize="20"/>
     </Grid>
 </Window>

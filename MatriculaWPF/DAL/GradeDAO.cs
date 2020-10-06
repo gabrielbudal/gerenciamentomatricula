@@ -25,6 +25,12 @@ namespace MatriculaWPF.DAL
             .Include(t => t.Turma)
                 .ThenInclude(n => n.Nivel)
             .ToList();
+        public static List<Grade> ListarGradeHoje(string dia) => _context.Grades
+            .Include(d => d.Dia)
+            .Include(t => t.Turma)
+                .ThenInclude(n => n.Nivel)
+            .Where(g => g.Dia.Descricao == dia)
+            .ToList();
         public static Grade BuscarGrade(Grade grade) => _context.Grades.Where(g => g.Turma == grade.Turma && g.MentorDisciplina == grade.MentorDisciplina && g.Dia == grade.Dia && g.HorarioInicio == grade.HorarioInicio && g.HorarioFim == grade.HorarioFim)
                     .FirstOrDefault();
         public static Grade BuscarGradePorId(int id) => _context.Grades.Include(t => t.Turma)

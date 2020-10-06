@@ -1,0 +1,24 @@
+﻿<Window x:Class="MatriculaWPF.Views.frmManterPresenca"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MatriculaWPF.Views"
+        mc:Ignorable="d"
+        Title="frmManterPresenca" Height="450" Width="800" Loaded="Window_Loaded">
+    <Grid>
+        <Button x:Name="btnCadastrar" Content="Gravar" HorizontalAlignment="Left" Margin="607,359,0,0" VerticalAlignment="Top" Height="34" Width="74" Click="btnAdicionar_Click" RenderTransformOrigin="-0.386,0.434"/>
+        <ComboBox x:Name="cboGrades" HorizontalAlignment="Left" Margin="85,70,0,0" VerticalAlignment="Top" Width="243" SelectionChanged="cboGrades_SelectionChanged" Height="53"/>
+        <Label Content="Cadastrar Presença:" HorizontalAlignment="Left" Height="47" Margin="38,18,0,0" VerticalAlignment="Top" Width="315"/>
+        <Label Content="Grade:" HorizontalAlignment="Left" Height="30" Margin="174,32,0,0" VerticalAlignment="Top" Width="104"/>
+        <DataGrid x:Name="dtaConjuntoAlunos" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" Height="169" Width="630" Margin="0,156,0,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nome" Width="1*" Binding="{Binding ConjuntoAluno.Aluno.Nome}"/>
+                <DataGridTextColumn Header="CPF" Width="1*" Binding="{Binding ConjuntoAluno.Aluno.Cpf}"/>
+                <DataGridCheckBoxColumn x:Name="ckbPresente" Header="Presente" Width="1*" Binding="{Binding Presente}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label x:Name="labelDia" Content="" HorizontalAlignment="Left" Margin="455,32,0,0" VerticalAlignment="Top" Height="52" Width="226"/>
+        <Label x:Name="labelData" Content="" HorizontalAlignment="Left" Margin="523,99,0,0" VerticalAlignment="Top" Height="52" Width="136"/>
+    </Grid>
+</Window>

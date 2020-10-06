@@ -7,11 +7,11 @@
         mc:Ignorable="d"
         Title="frmCadastrarTurma" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
-        <ComboBox x:Name="cboAdms" HorizontalAlignment="Left" Margin="356,111,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnAdicionar" Content="Adicionar" HorizontalAlignment="Left" Margin="523,105,0,0" VerticalAlignment="Top" Height="34" Width="74" Click="btnAdicionar_Click" RenderTransformOrigin="-0.386,0.434"/>
-        <ComboBox x:Name="cboNiveis" HorizontalAlignment="Left" Margin="193,111,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Cadastrar Turmas" HorizontalAlignment="Left" Height="47" Margin="133,31,0,0" VerticalAlignment="Top" Width="315"/>
-        <Label Content="Niveis:" HorizontalAlignment="Left" Height="31" Margin="201,78,0,0" VerticalAlignment="Top" Width="104"/>
-        <Label Content="Adms:" HorizontalAlignment="Left" Height="31" Margin="356,75,0,0" VerticalAlignment="Top" Width="104"/>
+        <ComboBox x:Name="cboAdms" HorizontalAlignment="Left" Margin="451,165,0,0" VerticalAlignment="Top" Width="230" Height="70"/>
+        <Button x:Name="btnAdicionar" Content="Adicionar" HorizontalAlignment="Left" Margin="600,304,0,0" VerticalAlignment="Top" Height="54" Width="111" Click="btnAdicionar_Click" RenderTransformOrigin="-0.386,0.434" FontSize="20"/>
+        <ComboBox x:Name="cboNiveis" HorizontalAlignment="Left" Margin="138,165,0,0" VerticalAlignment="Top" Width="230" Height="70"/>
+        <Label Content="Cadastrar Turmas" HorizontalAlignment="Left" Height="47" Margin="133,31,0,0" VerticalAlignment="Top" Width="315" FontSize="20"/>
+        <Label Content="Niveis:" HorizontalAlignment="Left" Height="31" Margin="138,111,0,0" VerticalAlignment="Top" Width="104" FontSize="20"/>
+        <Label Content="Adms:" HorizontalAlignment="Left" Height="51" Margin="451,111,0,0" VerticalAlignment="Top" Width="104" FontSize="20"/>
     </Grid>
 </Window>

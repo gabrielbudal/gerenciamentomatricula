@@ -27,6 +27,7 @@
                 <MenuItem x:Name="menuCadastrarDia" Header="_Dia" Click="menuCadastrarDia_Click"/>
                 <MenuItem x:Name="menuCadastrarGrade" Header="_Grade" Click="menuCadastrarGrade_Click"/>
                 <MenuItem x:Name="menuCadastrarPresenca" Header="_Presenca" Click="menuCadastrarPresenca_Click"/>
+                <MenuItem x:Name="menuListarPresenca" Header="_Listar Presença" Click="menuListarPresenca_Click"/>
             </MenuItem>
             <MenuItem Header="_Sobre"/>
         </Menu>

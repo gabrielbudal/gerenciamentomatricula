@@ -7,12 +7,13 @@
         mc:Ignorable="d"
         Title="frmCadastrarConjuntoAluno" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
-        <ComboBox x:Name="cboTurmas" HorizontalAlignment="Left" Height="32" Margin="217,59,0,0" VerticalAlignment="Top" Width="109"/>
-        <ComboBox x:Name="cboAlunos" HorizontalAlignment="Left" Margin="434,56,0,0" VerticalAlignment="Top" Width="125" Height="38"/>
+        <ComboBox x:Name="cboTurmas" HorizontalAlignment="Left" Height="32" Margin="217,59,0,0" VerticalAlignment="Top" Width="109">
+        </ComboBox>
+        <ComboBox x:Name="cboAlunos" HorizontalAlignment="Left" Margin="434,56,0,0" VerticalAlignment="Top" Width="125" Height="38">
+        </ComboBox>
         <Button x:Name="btnAdicionar" Content="Adicionar" HorizontalAlignment="Left" Margin="434,107,0,0" VerticalAlignment="Top" Click="btnAdicionar_Click" Width="125"/>
         <DataGrid x:Name="dtaConjuntoAlunos" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" Height="203" Width="630" Margin="0,155,0,0">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Descrição" Width="1*" Binding="{Binding Descricao}"/>
                 <DataGridTextColumn Header="Nome" Width="1*" Binding="{Binding Nome}"/>
                 <DataGridTextColumn Header="CPF" Width="1*" Binding="{Binding Cpf}"/>
             </DataGrid.Columns>

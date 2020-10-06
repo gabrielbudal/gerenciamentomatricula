@@ -7,11 +7,11 @@
         mc:Ignorable="d"
         Title="frmCadastrarHistoricoAluno" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
-        <ComboBox x:Name="cboAlunos" HorizontalAlignment="Left" Margin="356,111,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnAdicionar" Content="Adicionar" HorizontalAlignment="Left" Margin="523,105,0,0" VerticalAlignment="Top" Height="34" Width="74" Click="btnAdicionar_Click" RenderTransformOrigin="-0.386,0.434"/>
-        <ComboBox x:Name="cboNiveis" HorizontalAlignment="Left" Margin="193,111,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Historico Aluno" HorizontalAlignment="Left" Height="47" Margin="133,31,0,0" VerticalAlignment="Top" Width="315"/>
-        <Label Content="Nivel" HorizontalAlignment="Left" Height="31" Margin="201,78,0,0" VerticalAlignment="Top" Width="104"/>
-        <Label Content="Aluno" HorizontalAlignment="Left" Height="31" Margin="364,76,0,0" VerticalAlignment="Top" Width="104"/>
+        <ComboBox x:Name="cboAlunos" HorizontalAlignment="Left" Margin="445,0,0,0" VerticalAlignment="Center" Width="230" Height="70"/>
+        <Button x:Name="btnAdicionar" Content="Adicionar" HorizontalAlignment="Left" Margin="582,309,0,0" VerticalAlignment="Top" Height="54" Width="111" Click="btnAdicionar_Click" RenderTransformOrigin="-0.386,0.434" FontSize="20"/>
+        <ComboBox x:Name="cboNiveis" HorizontalAlignment="Left" Margin="138,0,0,0" VerticalAlignment="Center" Width="230" Height="70"/>
+        <Label Content="Historico Aluno" HorizontalAlignment="Left" Height="47" Margin="133,31,0,0" VerticalAlignment="Top" Width="315" FontSize="20"/>
+        <Label Content="Nivel" HorizontalAlignment="Left" Height="31" Margin="138,132,0,0" VerticalAlignment="Top" Width="104" FontSize="20"/>
+        <Label Content="Aluno" HorizontalAlignment="Left" Height="31" Margin="445,136,0,0" VerticalAlignment="Top" Width="104" FontSize="20"/>
     </Grid>
 </Window>
