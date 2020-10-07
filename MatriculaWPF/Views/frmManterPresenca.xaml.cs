@@ -28,23 +28,23 @@ namespace MatriculaWPF.Views
         {
             btnCadastrar.IsEnabled = false;
             //Dia da semana de hoje para carregar as grades
+            //DateTime dataatual = DateTime.Now.AddDays(+14);
             DateTime dataatual = DateTime.Now;
-            string datalabel = dataatual.ToString("dd/MM/yyyy h:mm tt");
-            string dia = dataatual.ToString("dddd");
+            string datavalidador = dataatual.ToString("dddd");
             //Lista de presenças de hoje
             List<Presenca> presencasfeitashoje = new List<Presenca>();
-
             //Aqui nao precisa ser uma lista, posso fazer apenas um firstordefault da mesma consulta,
             //pq se um cara do ConjuntoAluno tem presenca gravada, o mesmo se aplica pro resto
-
-            presencasfeitashoje = PresencaDAO.ListarPresencasHoje(dia, dataatual);
-
+            //presencasfeitashoje = PresencaDAO.ListarPresencasHoje(dia, dataatual)
 
             //Lista de grades de hoje
-            List<Grade> gradesfeitashoje = new List<Grade>();
+            //List<Grade> gradesfeitashoje = new List<Grade>();
             //gradesfeitashoje = presencasfeitashoje;
             //Carregar os dados da grade
-            cboGrades.ItemsSource = GradeDAO.ListarGradeHoje(dia);
+            //cboGrades.ItemsSource = TurmaDAO.ListarGradeHoje(dia);
+            cboGrades.ItemsSource = GradeDAO.ListarGradeHoje(datavalidador);
+            string datalabel = dataatual.ToString("dd/MM/yyyy h:mm tt");
+            string dia = dataatual.ToString("dddd");
             //cboAdms.DisplayMemberPath = "Nome";
             cboGrades.SelectedValuePath = "Id";
             labelDia.Content = "Dia da semana: " + Convert.ToString(dia);
@@ -104,6 +104,7 @@ namespace MatriculaWPF.Views
 
         private void btnAdicionar_Click(object sender, RoutedEventArgs e)
         {
+            int contadorjacadastrado = 0;
             foreach (var pa in presencas)
             {
                 //Instanciando novo objeto cada vez que o loop roda para não inserir 
@@ -112,10 +113,26 @@ namespace MatriculaWPF.Views
                 newpresenca.ConjuntoAluno = pa.ConjuntoAluno;
                 newpresenca.Grade = pa.Grade;
                 newpresenca.Presente = pa.Presente;
+                if (PresencaDAO.Cadastrar(newpresenca))
+                {
 
-                PresencaDAO.Cadastrar(newpresenca);
+                }
+                else
+                {
+                    contadorjacadastrado++;
+                }
             }
-            MessageBox.Show("Conjunto cadastrado com sucesso!!!");
+            if (contadorjacadastrado > 0)
+            {
+                MessageBox.Show("Já foi preenchida a lista de presença dessa grade hoje!", "Matricula WPF",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                MessageBox.Show("Lista de presença preenchida com sucesso!", "Matricula WPF",
+                    MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            
         }
     }
 }

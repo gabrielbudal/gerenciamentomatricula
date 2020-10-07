@@ -36,5 +36,8 @@ namespace MatriculaWPF.DAL
         public static Grade BuscarGradePorId(int id) => _context.Grades.Include(t => t.Turma)
                     .Where(g => g.Id == id)
                     .FirstOrDefault();
+        public static List<Grade> ListarPorTurma(int id) => _context.Grades.Include(t => t.Turma)
+                    .Where(g => g.Turma.Id == id)
+                    .ToList();
     }
 }

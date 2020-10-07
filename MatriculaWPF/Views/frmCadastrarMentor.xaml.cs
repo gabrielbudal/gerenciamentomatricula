@@ -33,7 +33,8 @@ namespace MatriculaWPF.Views
                 mentor = new Mentor
                 {
                     Nome = txtNome.Text,
-                    Cpf = txtCpf.Text
+                    Cpf = txtCpf.Text,
+                    Sobrenome = txtSobrenome.Text
                 };
                 if (Validacao.ValidarCpf(mentor.Cpf))
                 {
@@ -66,6 +67,7 @@ namespace MatriculaWPF.Views
         {
             txtId.Clear();
             txtNome.Clear();
+            txtSobrenome.Clear();
             txtCpf.Clear();
             txtCriadoEm.Clear();
             txtNome.Focus();
@@ -87,6 +89,7 @@ namespace MatriculaWPF.Views
 
                     txtId.Text = mentor.Id.ToString();
                     txtNome.Text = mentor.Nome;
+                    txtSobrenome.Text = mentor.Sobrenome;
                     txtCpf.Text = mentor.Cpf.ToString();
                     txtCriadoEm.Text = mentor.CriadoEm.ToString();
                 }
@@ -114,7 +117,7 @@ namespace MatriculaWPF.Views
             {
                 MentorDAO.Remover(mentor);
                 MessageBox.Show("O mentor foi removido com sucesso!!!", "Vendas WPF",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
@@ -130,9 +133,10 @@ namespace MatriculaWPF.Views
             {
                 mentor.Nome = txtNome.Text;
                 mentor.Cpf = txtCpf.Text;
+                mentor.Sobrenome = txtSobrenome.Text;
                 MentorDAO.Alterar(mentor);
                 MessageBox.Show("O mentor foi alterado com sucesso!!!", "Vendas WPF",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {

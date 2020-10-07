@@ -8,9 +8,10 @@ namespace MatriculaWPF.Models
     [Table("Mentores")]
     class Mentor : Pessoa
     {
+        public string Sobrenome { get; set; }
         public override string ToString()
         {
-            return $"{Nome} - {Cpf}";
+            return $"{Nome} - {Cpf} - {Sobrenome}";
         }
     }
 }

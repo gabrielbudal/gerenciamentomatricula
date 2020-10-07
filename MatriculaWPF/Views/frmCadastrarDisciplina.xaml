@@ -10,8 +10,7 @@
         <TextBox x:Name="txtCriadoEm" HorizontalAlignment="Left" Margin="286,226,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" IsEnabled="False"/>
         <TextBox x:Name="txtId" HorizontalAlignment="Left" Margin="286,44,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" IsEnabled="False"/>
         <Button x:Name="btnCadastrar" Content="Cadastrar" HorizontalAlignment="Left" Margin="582,288,0,0" VerticalAlignment="Top" Click="btnCadastrar_Click" Height="56" Width="135"/>
-        <Label Content="Manter Produto
-               " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Manter Disciplina                " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Label Content="Nome:       " HorizontalAlignment="Left" Margin="166,104,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Label Content="Id:" HorizontalAlignment="Left" Margin="166,40,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.959,1.855" FontSize="20"/>
         <Label Content="Criado Em:" HorizontalAlignment="Left" Margin="166,222,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.959,1.855" FontSize="20"/>

@@ -25,5 +25,11 @@ namespace MatriculaWPF.DAL
                     .FirstOrDefault();
         public static Turma BuscarTurmaPorId(int id) => _context.Turmas.Where(t => t.Id == id)
                     .FirstOrDefault();
+        public static List<Grade> ListarGradeHojePorTurma(string dia) => _context.Grades
+            .Include(d => d.Dia)
+            .Include(t => t.Turma)
+                .ThenInclude(n => n.Nivel)
+            .Where(g => g.Dia.Descricao == dia)
+            .ToList();
     }
 }

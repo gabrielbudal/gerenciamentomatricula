@@ -29,9 +29,9 @@ namespace MatriculaWPF.Views
         {
             List<Grade> gradesfeitashoje = new List<Grade>();
             //Carregar os dados da grade
-            cboGrades.ItemsSource = GradeDAO.Listar();
+            cboTurmas.ItemsSource = TurmaDAO.Listar();
             //cboAdms.DisplayMemberPath = "Nome";
-            cboGrades.SelectedValuePath = "Id";
+            cboTurmas.SelectedValuePath = "Id";
         }
 
         private void PopularDataGrid(Presenca presenca)
@@ -50,11 +50,11 @@ namespace MatriculaWPF.Views
             dtaConjuntoAlunos.ItemsSource = itens;
             dtaConjuntoAlunos.Items.Refresh();
             //Carregar os dados da grade selecionada
-            Grade g = new Grade();
-            g.Id = (int)cboGrades.SelectedValue;
+            Turma t = new Turma();
+            t.Id = (int)cboTurmas.SelectedValue;
 
-            //A partir da turma obteve conjunto aluno que preencherá a grid
-            var listpresencas = PresencaDAO.ListarPresencasPorGrade(g.Id);
+            var listgrades = GradeDAO.ListarPorTurma(t.Id);
+            var listpresencas = PresencaDAO.ListarPresencasPorListaGrade(listgrades);
             foreach (var pa in listpresencas)
             {
                 //Presenca newpresenca = new Presenca();
