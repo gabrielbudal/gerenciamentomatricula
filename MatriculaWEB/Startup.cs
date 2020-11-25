@@ -26,6 +26,17 @@ namespace MatriculaWEB
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<AlunoDAO>();
+            services.AddScoped<AdministracaoHorarioDAO>();
+            services.AddScoped<ConjuntoAlunoDAO>();
+            services.AddScoped<DiaDAO>();
+            services.AddScoped<DisciplinaDAO>();
+            services.AddScoped<GradeDAO>();
+            services.AddScoped<HistoricoAlunoDAO>();
+            services.AddScoped<MentorDAO>();
+            services.AddScoped<MentorDisciplinaDAO>();
+            services.AddScoped<NivelDAO>();
+            services.AddScoped<PresencaDAO>();
+            services.AddScoped<TurmaDAO>();
 
             services.AddDbContext<Context>
                 (options => options.UseSqlServer(
