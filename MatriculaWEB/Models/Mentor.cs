@@ -7,10 +7,9 @@ namespace MatriculaWEB.Models
 {
     public class Mentor : Pessoa
     {
-        public string Sobrenome { get; set; }
         public override string ToString()
         {
-            return $"{Nome} - {Cpf} - {Sobrenome}";
+            return $"{Nome} - {Cpf}";
         }
     }
 }

@@ -22,7 +22,7 @@ namespace MatriculaWEB.DAL
         }
         public void Remover(int id)
         {
-            _context.Alunos.Remove(_context.Alunos.Find(id));
+            _context.Mentores.Remove(_context.Mentores.Find(id));
             _context.SaveChanges();
         }
         public void Alterar(Mentor mentor)

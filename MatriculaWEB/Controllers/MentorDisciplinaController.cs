@@ -5,13 +5,23 @@ using System.Threading.Tasks;
 using MatriculaWEB.DAL;
 using MatriculaWEB.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MatriculaWEB.Controllers
 {
     public class MentorDisciplinaController : Controller
     {
         private readonly MentorDisciplinaDAO _mentordisciplinaDAO;
-        public MentorDisciplinaController(MentorDisciplinaDAO mentordisciplinaDAO) => _mentordisciplinaDAO = mentordisciplinaDAO;
+        private readonly MentorDAO _mentorDAO;
+        private readonly DisciplinaDAO _disciplinaDAO;
+        public MentorDisciplinaController(MentorDisciplinaDAO mentordisciplinaDAO, 
+            MentorDAO mentorDAO,
+            DisciplinaDAO disciplinaDAO)
+        {
+            _mentordisciplinaDAO = mentordisciplinaDAO;
+            _mentorDAO = mentorDAO;
+            _disciplinaDAO = disciplinaDAO;
+        }
         public IActionResult Index()
         {
             ViewBag.Title = "Gerenciamento de relacionamento Mentores x Disciplinas";
@@ -19,20 +29,23 @@ namespace MatriculaWEB.Controllers
         }
         public IActionResult Cadastrar()
         {
+            ViewBag.Mentores = new SelectList(_mentorDAO.Listar(), "Id", "Nome");
+            ViewBag.Disciplinas = new SelectList(_disciplinaDAO.Listar(), "Id", "Nome");
             return View();
         }
         [HttpPost]
         public IActionResult Cadastrar(MentorDisciplina mentordisciplina)
         {
-            if (ModelState.IsValid)
-            {
-                if (_mentordisciplinaDAO.Cadastrar(mentordisciplina))
-                {
-                    return RedirectToAction("Index", "MentorDisciplina");
-                }
-                ModelState.AddModelError("", "Não foi possível cadastrar pois já existe um aluno com este CPF!");
-            }
-            return View(mentordisciplina);
+            mentordisciplina.Mentor = _mentorDAO.BuscarPorId(mentordisciplina.MentorId);
+            mentordisciplina.Disciplina = _disciplinaDAO.BuscarPorId(mentordisciplina.DisciplinaId);
+            //if (ModelState.IsValid)
+            //{
+                _mentordisciplinaDAO.Cadastrar(mentordisciplina);
+                return RedirectToAction("Index", "MentorDisciplina");
+            //}
+            //ViewBag.Mentores = new SelectList(_mentorDAO.Listar(), "Id", "Nome");
+            //ViewBag.Disciplinas = new SelectList(_disciplinaDAO.Listar(), "Id", "Nome");
+            //return View(mentordisciplina);
         }
         public IActionResult Remover(int id)
         {

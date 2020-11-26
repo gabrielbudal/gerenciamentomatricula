@@ -4,14 +4,16 @@ using MatriculaWEB.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MatriculaWEB.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20201125232658_UpdateMentor")]
+    partial class UpdateMentor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -258,10 +260,10 @@ namespace MatriculaWEB.Migrations
                     b.Property<DateTime>("CriadoEm")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DisciplinaId")
+                    b.Property<int?>("DisciplinaId")
                         .HasColumnType("int");
 
-                    b.Property<int>("MentorId")
+                    b.Property<int?>("MentorId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -403,15 +405,11 @@ namespace MatriculaWEB.Migrations
                 {
                     b.HasOne("MatriculaWEB.Models.Disciplina", "Disciplina")
                         .WithMany()
-                        .HasForeignKey("DisciplinaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DisciplinaId");
 
                     b.HasOne("MatriculaWEB.Models.Mentor", "Mentor")
                         .WithMany()
-                        .HasForeignKey("MentorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MentorId");
                 });
 
             modelBuilder.Entity("MatriculaWEB.Models.Presenca", b =>
