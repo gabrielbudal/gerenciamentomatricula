@@ -4,14 +4,16 @@ using MatriculaWEB.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MatriculaWEB.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20201127024702_UpdateAdministracaoHorario")]
+    partial class UpdateAdministracaoHorario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -344,7 +346,8 @@ namespace MatriculaWEB.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Ano")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasMaxLength(4);
 
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");

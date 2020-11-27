@@ -1,0 +1,52 @@
+﻿@model List<Turma>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Gerenciamento de turmas</title>
+</head>
+<body>
+    <h2>Gerenciamento de turmas</h2>
+    <a asp-action="Cadastrar" asp-controller="Turma"
+       class="btn btn-primary espacamento-baixo">Cadastrar</a>
+    <table class="table table-hover table-striped espacamento-baixo">
+        <thead>
+            <tr>
+                <th>Horarios</th>
+                <th>Nivel</th>
+                <th>Ano</th>
+                <th>Criado em</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Turma turmaCadastrada in Model)
+            {
+            <tr>
+                <td>@turmaCadastrada.AdministracaoHorario</td>
+                <td>@turmaCadastrada.Nivel</td>
+                <td>@turmaCadastrada.Ano</td>
+                <td>@turmaCadastrada.CriadoEm.ToString(@*"dd/MM/yyyy hh:mm:ss"*@)</td>
+                <td>
+                    <a asp-action="Remover"
+                       asp-controller="Turma"
+                       asp-route-id="@turmaCadastrada.Id"
+                       class="btn btn-danger">Remover</a>
+                </td>
+                <td>
+                    <a asp-action="Alterar"
+                       asp-controller="Turma"
+                       asp-route-id="@turmaCadastrada.Id"
+                       class="btn btn-warning">Alterar</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+    <span><b>Quantidade de Relacionamentos: </b> @Model.Count </span><br />
+    <span><b>Dados atualizados: </b> @DateTime.Now </span>
+
+</body>
+</html>

@@ -21,7 +21,7 @@ namespace MatriculaWEB.DAL
             }
             return false;
         }
-        public List<Turma> Listar() => _context.Turmas.Include(n => n.Nivel).ToList();
+        public List<Turma> Listar() => _context.Turmas.Include(n => n.Nivel).Include(a => a.AdministracaoHorario).ToList();
         public Turma BuscarTurma(Turma turma) => _context.Turmas.Include(n => n.Nivel).Where(t => t.AdministracaoHorario == turma.AdministracaoHorario && t.Nivel == turma.Nivel)
                     .FirstOrDefault();
         public Turma BuscarTurmaPorId(int id) => _context.Turmas.Where(t => t.Id == id)
