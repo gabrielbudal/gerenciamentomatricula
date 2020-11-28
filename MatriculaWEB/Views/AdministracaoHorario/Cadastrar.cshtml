@@ -1,0 +1,41 @@
+﻿@model AdministracaoHorario
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Cadastrar</title>
+</head>
+<body>
+    <form asp-action="Cadastrar" asp-controller="AdministracaoHorario" method="post"
+          enctype="multipart/form-data">
+        <fieldset>
+            <legend>Manter administração de horários</legend>
+
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="HoraInicio">Início:</label>
+                <input class="form-control" asp-for="HoraInicio" type"text" placeholder="Horário de inicio" />
+                <span class="text-danger" asp-validation-for="HoraInicio"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="HoraFim">Fim:</label>
+                <input class="form-control" asp-for="HoraFim" type"text" placeholder="Horário fim" />
+                <span class="text-danger" asp-validation-for="HoraFim"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="TotalAulas">Total:</label>
+                <input class="form-control" asp-for="TotalAulas" type"number" placeholder="Total de aulas" />
+                <span class="text-danger" asp-validation-for="TotalAulas"></span>
+            </div>
+
+            <input class="btn btn-info" type="submit" value="Cadastrar" />
+        </fieldset>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+﻿<Window x:Class="MatriculaWPF.Views.frmPrincipal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MatriculaWPF.Views"
+        mc:Ignorable="d"
+        Title="Matricula WPF" Height="450" Width="744" Closing="Window_Closing">
+    <Grid>
+        <Menu VerticalAlignment="Top" HorizontalAlignment="Center" Height="20" Width="744">
+            <MenuItem Header="_Arquivo">
+                <MenuItem x:Name="menuSair" Header="_Sair" Click="menuSair_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Cadastrar">
+                <MenuItem x:Name="menuCadastrarDisciplina" Header="_Disciplina" Click="menuCadastrarDisciplina_Click"/>
+                <MenuItem x:Name="menuCadastrarMentor" Header="_Mentor" Click="menuCadastrarMentor_Click"/>
+                <MenuItem x:Name="menuCadastrarRelacionamentoMentorDisciplina" Header="_Relacionamento" Click="menuCadastrarRelacionamentoMentorDisciplina_Click"/>
+                <Separator/>
+                <MenuItem x:Name="menuCadastrarNivel" Header="_Nivel" Click="menuCadastrarNivel_Click"/>
+                <MenuItem x:Name="menuCadastrarAluno" Header="_Aluno" Click="menuCadastrarAluno_Click"/>
+                <MenuItem x:Name="menuCadastrarHistoricoAluno" Header="_Historico do Aluno" Click="menuCadastrarHistoricoAluno_Click"/>
+                <Separator/>
+                <MenuItem x:Name="menuCadastrarAdministracaoHorario" Header="_Administração Horario" Click="menuCadastrarAdministracaoHorario_Click"/>
+                <MenuItem x:Name="menuCadastrarTurma" Header="_Turma" Click="menuCadastrarTurma_Click"/>
+                <MenuItem x:Name="menuCadastrarConjuntoAlunos" Header="_Conjunto Alunos" Click="menuCadastrarConjuntoAlunos_Click"/>
+                <Separator/>
+                <MenuItem x:Name="menuCadastrarDia" Header="_Dia" Click="menuCadastrarDia_Click"/>
+                <MenuItem x:Name="menuCadastrarGrade" Header="_Grade" Click="menuCadastrarGrade_Click"/>
+                <MenuItem x:Name="menuCadastrarPresenca" Header="_Presenca" Click="menuCadastrarPresenca_Click"/>
+                <MenuItem x:Name="menuListarPresenca" Header="_Listar Presença" Click="menuListarPresenca_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Sobre"/>
+        </Menu>
+
+    </Grid>
+</Window>

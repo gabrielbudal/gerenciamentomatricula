@@ -1,0 +1,35 @@
+﻿@model Aluno
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Cadastrar</title>
+</head>
+<body>
+    <form asp-action="Cadastrar" asp-controller="Aluno" method="post"
+          enctype="multipart/form-data">
+        <fieldset>
+            <legend>Cadastrar Aluno</legend>
+
+            
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+           
+            <div class="form-group">
+                <label asp-for="Nome">Nome:</label>
+                <input class="form-control" asp-for="Nome" type"text" placeholder="Nome do aluno" />
+                <span class="text-danger" asp-validation-for="Nome"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Cpf">Cpf:</label>
+                <input class="form-control" asp-for="Cpf" type"text" placeholder="Cpf do aluno" />
+                <span class="text-danger" asp-validation-for="Cpf"></span>
+            </div>
+
+            <input class="btn btn-info" type="submit" value="Cadastrar" />
+        </fieldset>
+    </form>
+
+</body>
+</html>

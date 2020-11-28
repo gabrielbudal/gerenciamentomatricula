@@ -1,0 +1,52 @@
+﻿@model List<Aluno>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Gerenciamento de alunos</title>
+</head>
+<body>
+    <h2>Gerenciamento de alunos</h2>
+    <a asp-action="Cadastrar" asp-controller="Aluno"
+       class="btn btn-primary espacamento-baixo">Cadastrar</a>
+    <table class="table table-hover table-striped espacamento-baixo">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Criado em</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Aluno alunoCadastrado in Model)
+            {
+                <tr>
+                    <td>@alunoCadastrado.Id</td>
+                    <td>@alunoCadastrado.Nome</td>
+                    <td>@alunoCadastrado.Cpf</td>
+                    <td>@alunoCadastrado.CriadoEm.ToString(@*"dd/MM/yyyy hh:mm:ss"*@)</td>
+                    <td>
+                        <a asp-action="Remover" 
+                           asp-controller="Aluno" 
+                           asp-route-id="@alunoCadastrado.Id"
+                           class="btn btn-danger">Remover</a>
+                    </td>
+                    <td>
+                        <a asp-action="Alterar" 
+                           asp-controller="Aluno"
+                           asp-route-id="@alunoCadastrado.Id"
+                           class="btn btn-warning">Alterar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+    <span><b>Quantidade de alunos: </b> @Model.Count </span><br />
+    <span><b>Dados atualizados: </b> @DateTime.Now </span>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+﻿@model List<MentorDisciplina>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Gerenciamento de relacionamento entre mentor e disciplina</title>
+</head>
+<body>
+    <h2>Gerenciamento de relacionamento entre mentor e disciplina</h2>
+    <a asp-action="Cadastrar" asp-controller="MentorDisciplina"
+       class="btn btn-primary espacamento-baixo">Cadastrar</a>
+    <table class="table table-hover table-striped espacamento-baixo">
+        <thead>
+            <tr>
+                <th>Mentor</th>
+                <th>Disciplina</th>
+                <th>Criado em</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (MentorDisciplina relacionamentoCadastrado in Model)
+            {
+                <tr>
+                    <td>@relacionamentoCadastrado.Mentor</td>
+                    <td>@relacionamentoCadastrado.Disciplina</td>
+                    <td>@relacionamentoCadastrado.CriadoEm.ToString(@*"dd/MM/yyyy hh:mm:ss"*@)</td>
+                    <td>
+                        <a asp-action="Remover"
+                           asp-controller="MentorDisciplina"
+                           asp-route-id="@relacionamentoCadastrado.Id"
+                           class="btn btn-danger">Remover</a>
+                    </td>
+                    <td>
+                        <a asp-action="Alterar"
+                           asp-controller="MentorDisciplina"
+                           asp-route-id="@relacionamentoCadastrado.Id"
+                           class="btn btn-warning">Alterar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <span><b>Quantidade de Relacionamentos: </b> @Model.Count </span><br />
+    <span><b>Dados atualizados: </b> @DateTime.Now </span>
+
+</body>
+</html>

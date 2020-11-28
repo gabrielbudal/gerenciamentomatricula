@@ -1,0 +1,45 @@
+﻿@model Turma
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Cadastrar</title>
+</head>
+<body>
+    <form asp-action="Cadastrar" asp-controller="Turma" method="post"
+          enctype="multipart/form-data">
+        <fieldset>
+            <legend>Cadastrar Relacionamento entre mentor e disciplina</legend>
+
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="AdministracaoHorarioId">Horarios:</label>
+                <select class="form-control" asp-items="@ViewBag.AdministracaoHorarios"
+                        asp-for="AdministracaoHorarioId">
+                    <option> -- SELECIONE -- </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="NivelId">Nivel:</label>
+                <select class="form-control" asp-items="@ViewBag.Niveis"
+                        asp-for="NivelId">
+                    <option> -- SELECIONE -- </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Ano">Ano:</label>
+                <input class="form-control" asp-for="Ano" type"number" placeholder="Ano da turma" />
+                <span class="text-danger" asp-validation-for="Ano"></span>
+            </div>
+
+            <input class="btn btn-info" type="submit" value="Cadastrar" />
+        </fieldset>
+    </form>
+
+</body>
+</html>

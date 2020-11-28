@@ -1,0 +1,52 @@
+﻿@model List<Disciplina>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Gerenciamento de disciplinas</title>
+</head>
+<body>
+    <h2>Gerenciamento de disciplinas</h2>
+    <a asp-action="Cadastrar" asp-controller="Disciplina"
+       class="btn btn-primary espacamento-baixo">Cadastrar</a>
+    <table class="table table-hover table-striped espacamento-baixo">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Criado em</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Disciplina disciplinaCadastrada in Model)
+            {
+                <tr>
+                    <td>@disciplinaCadastrada.Id</td>
+                    <td>@disciplinaCadastrada.Nome</td>
+                    <td>@disciplinaCadastrada.Descricao</td>
+                    <td>@disciplinaCadastrada.CriadoEm.ToString(@*"dd/MM/yyyy hh:mm:ss"*@)</td>
+                    <td>
+                        <a asp-action="Remover"
+                           asp-controller="Disciplina"
+                           asp-route-id="@disciplinaCadastrada.Id"
+                           class="btn btn-danger">Remover</a>
+                    </td>
+                    <td>
+                        <a asp-action="Alterar"
+                           asp-controller="Disciplina"
+                           asp-route-id="@disciplinaCadastrada.Id"
+                           class="btn btn-warning">Alterar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <span><b>Quantidade de disciplinas: </b> @Model.Count </span><br />
+    <span><b>Dados atualizados: </b> @DateTime.Now </span>
+
+</body>
+</html>
