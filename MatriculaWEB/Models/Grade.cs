@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,9 +18,15 @@ namespace MatriculaWEB.Models
             //Descricao = "Turma: " + Turma.Descricao + " " + MentorDisciplina.Descricao + HorarioInicio + " " + HorarioFim + " " + Dia;
         }
         //Atributos, propriedades e características
+        [ForeignKey("TurmaId")]
         public Turma Turma { get; set; }
+        public int TurmaId { get; set; }
+        [ForeignKey("MentorDisciplinaId")]
         public MentorDisciplina MentorDisciplina { get; set; }
+        public int MentorDisciplinaId { get; set; }
+        [ForeignKey("DiaId")]
         public Dia Dia { get; set; }
+        public int DiaId { get; set; }
         public string HorarioInicio { get; set; }
         public string HorarioFim { get; set; }
         //public string Descricao { get; set; }

@@ -1,0 +1,59 @@
+﻿@model Grade
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Cadastrar</title>
+</head>
+<body>
+    <form asp-action="Cadastrar" asp-controller="Grade" method="post"
+          enctype="multipart/form-data">
+        <fieldset>
+            <legend>Cadastrar grade</legend>
+
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="TurmaId">Turma:</label>
+                <select class="form-control" asp-items="@ViewBag.Turmas"
+                        asp-for="TurmaId">
+                    <option> -- SELECIONE -- </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="MentorDisciplinaId">Mentor x Disciplina:</label>
+                <select class="form-control" asp-items="@ViewBag.MentorDisciplinas"
+                        asp-for="MentorDisciplinaId">
+                    <option> -- SELECIONE -- </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DiaId">Dia:</label>
+                <select class="form-control" asp-items="@ViewBag.Dias"
+                        asp-for="DiaId">
+                    <option> -- SELECIONE -- </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="HorarioInicio">Início:</label>
+                <input class="form-control" asp-for="HorarioInicio" type"text" placeholder="Horário de inicio" />
+                <span class="text-danger" asp-validation-for="HorarioInicio"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="HorarioFim">Fim:</label>
+                <input class="form-control" asp-for="HorarioFim" type"text" placeholder="Horário fim" />
+                <span class="text-danger" asp-validation-for="HorarioFim"></span>
+            </div>
+
+            <input class="btn btn-info" type="submit" value="Cadastrar" />
+        </fieldset>
+    </form>
+
+</body>
+</html>

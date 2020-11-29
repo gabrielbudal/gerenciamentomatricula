@@ -1,0 +1,56 @@
+﻿@model List<Grade>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Gerenciamento de grade</title>
+</head>
+<body>
+    <h2>Gerenciamento de grade</h2>
+    <a asp-action="Cadastrar" asp-controller="Grade"
+       class="btn btn-primary espacamento-baixo">Cadastrar</a>
+    <table class="table table-hover table-striped espacamento-baixo">
+        <thead>
+            <tr>
+                <th>Turma</th>
+                <th>Mentor x Disciplina</th>
+                <th>Dia</th>
+                <th>Horário Início</th>
+                <th>Horário Fim</th>
+                <th>Criado em</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Grade gradeCadastrado in Model)
+            {
+                <tr>
+                    <td>@gradeCadastrado.Turma</td>
+                    <td>@gradeCadastrado.MentorDisciplina</td>
+                    <td>@gradeCadastrado.Dia</td>
+                    <td>@gradeCadastrado.HorarioInicio</td>
+                    <td>@gradeCadastrado.HorarioFim</td>
+                    <td>@gradeCadastrado.CriadoEm.ToString(@*"dd/MM/yyyy hh:mm:ss"*@)</td>
+                    <td>
+                        <a asp-action="Remover"
+                           asp-controller="Grade"
+                           asp-route-id="@gradeCadastrado.Id"
+                           class="btn btn-danger">Remover</a>
+                    </td>
+                    <td>
+                        <a asp-action="Alterar"
+                           asp-controller="Grade"
+                           asp-route-id="@gradeCadastrado.Id"
+                           class="btn btn-warning">Alterar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>  
+
+    <span><b>Quantidade de grades: </b> @Model.Count </span><br />
+    <span><b>Dados atualizados: </b> @DateTime.Now </span>
+
+</body>
+</html>

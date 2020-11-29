@@ -18,7 +18,11 @@ namespace MatriculaWEB.DAL
             _context.SaveChanges();
             return true;
         }
-        public List<ConjuntoAluno> Listar() => _context.ConjuntoAlunos.Include(a => a.Aluno).ToList();
+        public List<ConjuntoAluno> Listar() => _context.ConjuntoAlunos.
+            Include(a => a.Aluno)
+            .Include(t => t.Turma)
+                .ThenInclude(n => n.Nivel)
+            .ToList();
         //public static ConjuntoAluno BuscarConjuntoAluno(ConjuntoAluno conjuntoaluno) => _context.ConjuntoAlunos.Where(ca => ca.Turma == conjuntoaluno.Turma && ca.Aluno == conjuntoaluno.Aluno)
         //           .FirstOrDefault();
         public List<ConjuntoAluno> BuscarConjuntoAlunoPorTurma(ConjuntoAluno conjuntoaluno) => _context.ConjuntoAlunos.Include(a => a.Aluno).Where(ca => ca.Turma == conjuntoaluno.Turma)

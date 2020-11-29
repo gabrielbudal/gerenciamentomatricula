@@ -4,14 +4,16 @@ using MatriculaWEB.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MatriculaWEB.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20201128160936_UpdateGrade")]
+    partial class UpdateGrade
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -83,7 +85,7 @@ namespace MatriculaWEB.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AlunoId")
+                    b.Property<int?>("AlunoId")
                         .HasColumnType("int");
 
                     b.Property<bool>("Ativo")
@@ -92,7 +94,7 @@ namespace MatriculaWEB.Migrations
                     b.Property<DateTime>("CriadoEm")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("TurmaId")
+                    b.Property<int?>("TurmaId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -309,13 +311,16 @@ namespace MatriculaWEB.Migrations
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");
 
-                    b.Property<int>("ConjuntoAlunoId")
+                    b.Property<int?>("ConjuntoAlunoId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CriadoEm")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("GradeId")
+                    b.Property<DateTime>("Data")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("GradeId")
                         .HasColumnType("int");
 
                     b.Property<bool>("Presente")
@@ -365,15 +370,11 @@ namespace MatriculaWEB.Migrations
                 {
                     b.HasOne("MatriculaWEB.Models.Aluno", "Aluno")
                         .WithMany()
-                        .HasForeignKey("AlunoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AlunoId");
 
                     b.HasOne("MatriculaWEB.Models.Turma", "Turma")
                         .WithMany()
-                        .HasForeignKey("TurmaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TurmaId");
                 });
 
             modelBuilder.Entity("MatriculaWEB.Models.Grade", b =>
@@ -427,15 +428,11 @@ namespace MatriculaWEB.Migrations
                 {
                     b.HasOne("MatriculaWEB.Models.ConjuntoAluno", "ConjuntoAluno")
                         .WithMany()
-                        .HasForeignKey("ConjuntoAlunoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ConjuntoAlunoId");
 
                     b.HasOne("MatriculaWEB.Models.Grade", "Grade")
                         .WithMany()
-                        .HasForeignKey("GradeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("GradeId");
                 });
 
             modelBuilder.Entity("MatriculaWEB.Models.Turma", b =>

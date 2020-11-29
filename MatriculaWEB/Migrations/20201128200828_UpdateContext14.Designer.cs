@@ -4,14 +4,16 @@ using MatriculaWEB.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MatriculaWEB.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20201128200828_UpdateContext14")]
+    partial class UpdateContext14
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -309,13 +311,16 @@ namespace MatriculaWEB.Migrations
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");
 
-                    b.Property<int>("ConjuntoAlunoId")
+                    b.Property<int?>("ConjuntoAlunoId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CriadoEm")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("GradeId")
+                    b.Property<DateTime>("Data")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("GradeId")
                         .HasColumnType("int");
 
                     b.Property<bool>("Presente")
@@ -427,15 +432,11 @@ namespace MatriculaWEB.Migrations
                 {
                     b.HasOne("MatriculaWEB.Models.ConjuntoAluno", "ConjuntoAluno")
                         .WithMany()
-                        .HasForeignKey("ConjuntoAlunoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ConjuntoAlunoId");
 
                     b.HasOne("MatriculaWEB.Models.Grade", "Grade")
                         .WithMany()
-                        .HasForeignKey("GradeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("GradeId");
                 });
 
             modelBuilder.Entity("MatriculaWEB.Models.Turma", b =>

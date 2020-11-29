@@ -1,0 +1,35 @@
+﻿@model Dia
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Cadastrar</title>
+</head>
+<body>
+    <form asp-action="Cadastrar" asp-controller="Dia" method="post"
+          enctype="multipart/form-data">
+        <fieldset>
+            <legend>Cadastrar dia</legend>
+
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Descricao">Descrição:</label>
+                <input class="form-control" asp-for="Descricao" type"text" placeholder="Descrição:" />
+                <span class="text-danger" asp-validation-for="Descricao"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Ordenacao">Ordenação:</label>
+                <input class="form-control" asp-for="Ordenacao" type"number" placeholder="Ordenação:" />
+                <span class="text-danger" asp-validation-for="Ordenacao"></span>
+            </div>
+
+            <input class="btn btn-info" type="submit" value="Cadastrar" />
+        </fieldset>
+    </form>
+
+</body>
+</html>

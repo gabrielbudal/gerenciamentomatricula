@@ -1,0 +1,44 @@
+﻿@model List<Grade>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Lista de presenças a serem preenchidas:</title>
+</head>
+<body>
+    <h2>Lista de presenças a serem preenchidas:</h2>
+
+    <table class="table table-hover table-striped espacamento-baixo">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Turma</th>
+                <th>Mentor</th>
+                <th>Disciplina</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Grade gradesAPreencher in Model)
+            {
+                <tr>
+                    <td>@gradesAPreencher.Id</td>
+                    <td>@gradesAPreencher.Turma.Nivel.Nome</td>
+                    <td>@gradesAPreencher.MentorDisciplina.Mentor.Nome</td>
+                    <td>@gradesAPreencher.MentorDisciplina.Disciplina.Nome</td>
+                    <td>
+                        <a asp-action="Cadastrar"
+                           asp-controller="Presenca"
+                           asp-route-id="@gradesAPreencher.Id"
+                           class="btn btn-danger">Realizar cadastro de lista</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <span><b>Quantidade de regitros: </b> @Model.Count </span><br />
+    <span><b>Dados atualizados: </b> @DateTime.Now </span>
+
+</body>
+</html>

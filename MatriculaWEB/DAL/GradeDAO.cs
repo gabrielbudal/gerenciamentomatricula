@@ -23,11 +23,19 @@ namespace MatriculaWEB.DAL
         }
         public List<Grade> Listar() => _context.Grades
             .Include(d => d.Dia)
+            .Include(md => md.MentorDisciplina)
+                .ThenInclude(m => m.Mentor)
+            .Include(md => md.MentorDisciplina)
+                .ThenInclude(d => d.Disciplina)
             .Include(t => t.Turma)
                 .ThenInclude(n => n.Nivel)
             .ToList();
         public List<Grade> ListarGradeHoje(string dia) => _context.Grades
             .Include(d => d.Dia)
+            .Include(m => m.MentorDisciplina)
+                .ThenInclude(m => m.Mentor)
+            .Include(m => m.MentorDisciplina)
+                .ThenInclude(d => d.Disciplina)
             .Include(t => t.Turma)
                 .ThenInclude(n => n.Nivel)
             .Where(g => g.Dia.Descricao == dia)
