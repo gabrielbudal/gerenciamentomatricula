@@ -14,7 +14,7 @@ namespace MatriculaWEB.Models
             ConjuntoAluno = new ConjuntoAluno();
             Grade = new Grade();
             //Aluno = new Aluno();
-            //Data = DateTime.Now;
+            Data = DateTime.Now;
         }
         //Atributos, propriedades e características
         [ForeignKey("ConjuntoAlunoId")]
@@ -24,7 +24,7 @@ namespace MatriculaWEB.Models
         public Grade Grade { get; set; }
         public int GradeId { get; set; }
         //public Aluno Aluno { get; set; }
-        //public DateTime Data { get; set; }
+        public DateTime Data { get; set; }
         public Boolean Presente { get; set; }
     }
 }

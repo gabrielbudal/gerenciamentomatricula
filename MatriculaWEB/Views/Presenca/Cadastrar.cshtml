@@ -22,6 +22,18 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
+                <label asp-for="Id">Id:</label>
+                <input name="idturma" class="form-control" asp-for="Id" type"text" value="@ViewBag.IdTurma" />
+                <span class="text-danger" asp-validation-for="Id"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Id">Id:</label>
+                <input name="idgrade" class="form-control" asp-for="Id" type"text" value="@ViewBag.IdGrade" />
+                <span class="text-danger" asp-validation-for="Id"></span>
+            </div>
+
+            <div class="form-group">
                 <label asp-for="ConjuntoAlunoId">Alunos:</label>
                 <select id="framework" name="framework[]" multiple="multiple"
                         asp-items="@ViewBag.ConjuntoAlunos"

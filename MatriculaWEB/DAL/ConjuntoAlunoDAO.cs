@@ -33,7 +33,11 @@ namespace MatriculaWEB.DAL
                    .FirstOrDefault();
         public ConjuntoAluno BuscarConjuntoAlunoPorIdTabelas(int idconjuntoaluno) => _context.ConjuntoAlunos.Where(ca => ca.Id == idconjuntoaluno)
                    .FirstOrDefault();
-
+        public List<ConjuntoAluno> BuscarConjuntoAlunoPorListaIds(List<int> lista, int idturma) => _context.ConjuntoAlunos
+            .Include(a => a.Aluno)
+            .Where(ca => ca.Turma.Id == idturma
+                && !lista.Contains(ca.Aluno.Id))
+            .ToList();
         public ConjuntoAluno BuscarConjuntoAlunoPorIdTabelas() => _context.ConjuntoAlunos
             .Include(a => a.Aluno)
             .FirstOrDefault();
@@ -42,6 +46,8 @@ namespace MatriculaWEB.DAL
             _context.ConjuntoAlunos.Update(conjuntoaluno);
             _context.SaveChanges();
         }
-        public ConjuntoAluno BuscarPorId(int id) => _context.ConjuntoAlunos.Find(id);
+        public ConjuntoAluno BuscarPorId(int id) => _context.ConjuntoAlunos.Include(a => a.Aluno).Include(t => t.Turma)
+            .Where(ca => ca.Id == id)
+                   .FirstOrDefault();
     }
 }

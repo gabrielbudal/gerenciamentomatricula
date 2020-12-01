@@ -34,8 +34,10 @@ namespace MatriculaWEB.Controllers
 
             //A partir da grade obteve a turma
             int idturma = g.Turma.Id;
-
+            int idgrade = g.Id;
             //A partir da turma obteve conjunto aluno que preencherá a grid
+            ViewBag.IdGrade = idgrade;
+            ViewBag.IdTurma = idturma;
             ViewBag.ConjuntoAlunos = new SelectList(_conjuntoalunoDAO.BuscarConjuntoAlunoPorIdTurma(idturma), "Id", "Aluno");
 
             //ViewBag.ConjuntoAlunos = new SelectList(_conjuntoalunoDAO.Listar(), "Id", "Aluno");
@@ -45,25 +47,62 @@ namespace MatriculaWEB.Controllers
         public IActionResult Cadastrar(ConjuntoAluno conjuntoalunos, Presenca presenca)
         {
             var resultForm2 = HttpContext.Request.Form["framework[]"];
+            var resultForm3 = int.Parse(HttpContext.Request.Form["idturma"]);
+            var resultForm4 = int.Parse(HttpContext.Request.Form["idgrade"]);
+
+            //List<ConjuntoAluno> result = _conjuntoalunoDAO.BuscarConjuntoAlunoPorIdTurma(resultForm3);
+            //var resultForm = Request?.Form;
+
+            Grade g = new Grade();
+            g = _gradeDAO.BuscarGradePorId(resultForm4);
+
+            //alunos com falta
             if (resultForm2.Count != 0)
             {
+                //primeiro marcar os com falta
                 foreach (var ca in resultForm2)
                 {
                     Presenca newpresenca = new Presenca();
+                    ConjuntoAluno conjuntoaluno = new ConjuntoAluno();
+
                     int id = int.Parse(ca);
-                    ConjuntoAluno conjuntoaluno = _conjuntoalunoDAO.BuscarPorId(id);
+                    conjuntoaluno = _conjuntoalunoDAO.BuscarPorId(id);
                     newpresenca.ConjuntoAluno = conjuntoaluno;
 
-                    newpresenca.Grade = _gradeDAO.BuscarPorId(presenca.GradeId);
+                    newpresenca.Grade = g;
                     newpresenca.Presente = false;
                     _presencaDAO.Cadastrar(newpresenca);
                 }
-                return RedirectToAction("Index", "ConjuntoAluno");
+
+                //depois os sem falta
+                List<int> alunosfaltasint = resultForm2.Select(int.Parse).ToList();
+                List<ConjuntoAluno> alunopresentes = _conjuntoalunoDAO.BuscarConjuntoAlunoPorListaIds(alunosfaltasint, resultForm3);
+                foreach (var ca in alunopresentes)
+                {
+                    Presenca newpresenca = new Presenca();
+                    newpresenca.ConjuntoAluno = ca;
+                    newpresenca.Grade = g;
+                    newpresenca.Presente = true;
+                    _presencaDAO.Cadastrar(newpresenca);
+                }
+
             }
-            ViewBag.ConjuntoAlunos = new SelectList(_conjuntoalunoDAO.Listar(), "Id", "Aluno");
-            ViewBag.Grades = new SelectList(_gradeDAO.Listar(), "Id", "Turma");
-            ModelState.AddModelError("", "Selecionar pelo menos 1 aluno!");
-            return View(presenca);
+            //se não existiram faltas, presença para todos
+            else
+            {
+                List<ConjuntoAluno> result = _conjuntoalunoDAO.BuscarConjuntoAlunoPorIdTurma(resultForm3);
+
+                foreach (var ca in result)
+                {
+                    Presenca newpresenca = new Presenca();
+                    newpresenca.ConjuntoAluno = ca;
+                    newpresenca.Grade = g;
+                    newpresenca.Presente = true;
+                    _presencaDAO.Cadastrar(newpresenca);
+                }
+            }
+
+            return RedirectToAction("Index", "Presenca");
         }
         public IActionResult ListaRealizar()
         {

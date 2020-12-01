@@ -26,7 +26,12 @@ namespace MatriculaWEB.DAL
                 return false;
             }
         }
-        public List<Presenca> Listar() => _context.Presencas.ToList();
+        public List<Presenca> Listar() => _context.Presencas
+            .Include(ca => ca.ConjuntoAluno)
+                .ThenInclude(t => t.Turma)
+                    .ThenInclude(n => n.Nivel)
+            .Include(g => g.Grade)
+            .ToList();
         public List<Presenca> ListarPresencasHoje(string dia, DateTime data) => _context.Presencas
             .Include(p => p.Grade)
                 .ThenInclude(d => d.Dia)
