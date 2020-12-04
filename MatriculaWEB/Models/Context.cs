@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MatriculaWEB.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace MatriculaWEB.Models
 {
-    public class Context : DbContext
+    public class Context : IdentityDbContext<Usuario>
     {
         public Context(DbContextOptions options) : base(options)
         { 
@@ -25,5 +26,6 @@ namespace MatriculaWEB.Models
         public DbSet<Grade> Grades { get; set; }
         public DbSet<Presenca> Presencas { get; set; }
         public DbSet<Mentor> Mentores { get; set; }
+        public DbSet<UsuarioView> Usuarios { get; set; }
     }
 }

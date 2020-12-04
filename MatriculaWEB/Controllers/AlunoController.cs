@@ -7,9 +7,11 @@ using System.IO;
 using MatriculaWEB.Models;
 using System.Linq;
 using MatriculaWEB.DAL;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MatriculaWEB.Controllers
 {
+    [Authorize]
     public class AlunoController : Controller
     {
         private readonly AlunoDAO _alunoDAO;

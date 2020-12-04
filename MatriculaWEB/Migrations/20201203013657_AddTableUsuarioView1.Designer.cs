@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MatriculaWEB.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20201127024702_UpdateAdministracaoHorario")]
-    partial class UpdateAdministracaoHorario
+    [Migration("20201203013657_AddTableUsuarioView1")]
+    partial class AddTableUsuarioView1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.9")
+                .HasAnnotation("ProductVersion", "3.1.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -85,7 +85,7 @@ namespace MatriculaWEB.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AlunoId")
+                    b.Property<int>("AlunoId")
                         .HasColumnType("int");
 
                     b.Property<bool>("Ativo")
@@ -94,7 +94,7 @@ namespace MatriculaWEB.Migrations
                     b.Property<DateTime>("CriadoEm")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("TurmaId")
+                    b.Property<int>("TurmaId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -167,7 +167,7 @@ namespace MatriculaWEB.Migrations
                     b.Property<DateTime>("CriadoEm")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("DiaId")
+                    b.Property<int>("DiaId")
                         .HasColumnType("int");
 
                     b.Property<string>("HorarioFim")
@@ -176,10 +176,10 @@ namespace MatriculaWEB.Migrations
                     b.Property<string>("HorarioInicio")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("MentorDisciplinaId")
+                    b.Property<int>("MentorDisciplinaId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TurmaId")
+                    b.Property<int>("TurmaId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -311,7 +311,7 @@ namespace MatriculaWEB.Migrations
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ConjuntoAlunoId")
+                    b.Property<int>("ConjuntoAlunoId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CriadoEm")
@@ -346,8 +346,7 @@ namespace MatriculaWEB.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Ano")
-                        .HasColumnType("int")
-                        .HasMaxLength(4);
+                        .HasColumnType("int");
 
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");
@@ -367,30 +366,66 @@ namespace MatriculaWEB.Migrations
                     b.ToTable("Turmas");
                 });
 
+            modelBuilder.Entity("MatriculaWEB.Models.UsuarioView", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("CriadoEm")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Senha")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Usuarios");
+                });
+
             modelBuilder.Entity("MatriculaWEB.Models.ConjuntoAluno", b =>
                 {
                     b.HasOne("MatriculaWEB.Models.Aluno", "Aluno")
                         .WithMany()
-                        .HasForeignKey("AlunoId");
+                        .HasForeignKey("AlunoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("MatriculaWEB.Models.Turma", "Turma")
                         .WithMany()
-                        .HasForeignKey("TurmaId");
+                        .HasForeignKey("TurmaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MatriculaWEB.Models.Grade", b =>
                 {
                     b.HasOne("MatriculaWEB.Models.Dia", "Dia")
                         .WithMany()
-                        .HasForeignKey("DiaId");
+                        .HasForeignKey("DiaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("MatriculaWEB.Models.MentorDisciplina", "MentorDisciplina")
                         .WithMany()
-                        .HasForeignKey("MentorDisciplinaId");
+                        .HasForeignKey("MentorDisciplinaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("MatriculaWEB.Models.Turma", "Turma")
                         .WithMany()
-                        .HasForeignKey("TurmaId");
+                        .HasForeignKey("TurmaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MatriculaWEB.Models.HistoricoAluno", b =>
@@ -423,7 +458,9 @@ namespace MatriculaWEB.Migrations
                 {
                     b.HasOne("MatriculaWEB.Models.ConjuntoAluno", "ConjuntoAluno")
                         .WithMany()
-                        .HasForeignKey("ConjuntoAlunoId");
+                        .HasForeignKey("ConjuntoAlunoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("MatriculaWEB.Models.Grade", "Grade")
                         .WithMany()

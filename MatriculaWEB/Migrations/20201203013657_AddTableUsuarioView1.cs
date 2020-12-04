@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MatriculaWEB.Migrations
 {
-    public partial class UpContexts2 : Migration
+    public partial class AddTableUsuarioView1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,13 +15,29 @@ namespace MatriculaWEB.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CriadoEm = table.Column<DateTime>(nullable: false),
                     Ativo = table.Column<bool>(nullable: false),
-                    HoraFim = table.Column<string>(nullable: true),
-                    HoraInicio = table.Column<string>(nullable: true),
+                    HoraFim = table.Column<string>(nullable: false),
+                    HoraInicio = table.Column<string>(nullable: false),
                     TotalAulas = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AdministracaoHorarios", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Alunos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CriadoEm = table.Column<DateTime>(nullable: false),
+                    Ativo = table.Column<bool>(nullable: false),
+                    Nome = table.Column<string>(maxLength: 40, nullable: false),
+                    Cpf = table.Column<string>(maxLength: 11, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Alunos", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -57,7 +73,7 @@ namespace MatriculaWEB.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Mentor",
+                name: "Mentores",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -65,12 +81,11 @@ namespace MatriculaWEB.Migrations
                     CriadoEm = table.Column<DateTime>(nullable: false),
                     Ativo = table.Column<bool>(nullable: false),
                     Nome = table.Column<string>(maxLength: 40, nullable: false),
-                    Cpf = table.Column<string>(maxLength: 11, nullable: false),
-                    Sobrenome = table.Column<string>(nullable: true)
+                    Cpf = table.Column<string>(maxLength: 11, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Mentor", x => x.Id);
+                    table.PrimaryKey("PK_Mentores", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -90,6 +105,22 @@ namespace MatriculaWEB.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Usuarios",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CriadoEm = table.Column<DateTime>(nullable: false),
+                    Ativo = table.Column<bool>(nullable: false),
+                    Email = table.Column<string>(nullable: false),
+                    Senha = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Usuarios", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "MentorDisciplinas",
                 columns: table => new
                 {
@@ -97,8 +128,8 @@ namespace MatriculaWEB.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CriadoEm = table.Column<DateTime>(nullable: false),
                     Ativo = table.Column<bool>(nullable: false),
-                    MentorId = table.Column<int>(nullable: true),
-                    DisciplinaId = table.Column<int>(nullable: true)
+                    MentorId = table.Column<int>(nullable: false),
+                    DisciplinaId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -108,13 +139,13 @@ namespace MatriculaWEB.Migrations
                         column: x => x.DisciplinaId,
                         principalTable: "Disciplinas",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_MentorDisciplinas_Mentor_MentorId",
+                        name: "FK_MentorDisciplinas_Mentores_MentorId",
                         column: x => x.MentorId,
-                        principalTable: "Mentor",
+                        principalTable: "Mentores",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -153,9 +184,9 @@ namespace MatriculaWEB.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CriadoEm = table.Column<DateTime>(nullable: false),
                     Ativo = table.Column<bool>(nullable: false),
-                    AdministracaoHorarioId = table.Column<int>(nullable: true),
                     Ano = table.Column<int>(nullable: false),
-                    NivelId = table.Column<int>(nullable: true)
+                    AdministracaoHorarioId = table.Column<int>(nullable: false),
+                    NivelId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -165,13 +196,13 @@ namespace MatriculaWEB.Migrations
                         column: x => x.AdministracaoHorarioId,
                         principalTable: "AdministracaoHorarios",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Turmas_Niveis_NivelId",
                         column: x => x.NivelId,
                         principalTable: "Niveis",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -182,8 +213,8 @@ namespace MatriculaWEB.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CriadoEm = table.Column<DateTime>(nullable: false),
                     Ativo = table.Column<bool>(nullable: false),
-                    TurmaId = table.Column<int>(nullable: true),
-                    AlunoId = table.Column<int>(nullable: true)
+                    TurmaId = table.Column<int>(nullable: false),
+                    AlunoId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -193,13 +224,13 @@ namespace MatriculaWEB.Migrations
                         column: x => x.AlunoId,
                         principalTable: "Alunos",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ConjuntoAlunos_Turmas_TurmaId",
                         column: x => x.TurmaId,
                         principalTable: "Turmas",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -210,9 +241,9 @@ namespace MatriculaWEB.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CriadoEm = table.Column<DateTime>(nullable: false),
                     Ativo = table.Column<bool>(nullable: false),
-                    TurmaId = table.Column<int>(nullable: true),
-                    MentorDisciplinaId = table.Column<int>(nullable: true),
-                    DiaId = table.Column<int>(nullable: true),
+                    TurmaId = table.Column<int>(nullable: false),
+                    MentorDisciplinaId = table.Column<int>(nullable: false),
+                    DiaId = table.Column<int>(nullable: false),
                     HorarioInicio = table.Column<string>(nullable: true),
                     HorarioFim = table.Column<string>(nullable: true)
                 },
@@ -224,19 +255,19 @@ namespace MatriculaWEB.Migrations
                         column: x => x.DiaId,
                         principalTable: "Dias",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Grades_MentorDisciplinas_MentorDisciplinaId",
                         column: x => x.MentorDisciplinaId,
                         principalTable: "MentorDisciplinas",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Grades_Turmas_TurmaId",
                         column: x => x.TurmaId,
                         principalTable: "Turmas",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -247,7 +278,7 @@ namespace MatriculaWEB.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CriadoEm = table.Column<DateTime>(nullable: false),
                     Ativo = table.Column<bool>(nullable: false),
-                    ConjuntoAlunoId = table.Column<int>(nullable: true),
+                    ConjuntoAlunoId = table.Column<int>(nullable: false),
                     GradeId = table.Column<int>(nullable: true),
                     Data = table.Column<DateTime>(nullable: false),
                     Presente = table.Column<bool>(nullable: false)
@@ -259,8 +290,7 @@ namespace MatriculaWEB.Migrations
                         name: "FK_Presencas_ConjuntoAlunos_ConjuntoAlunoId",
                         column: x => x.ConjuntoAlunoId,
                         principalTable: "ConjuntoAlunos",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Presencas_Grades_GradeId",
                         column: x => x.GradeId,
@@ -344,10 +374,16 @@ namespace MatriculaWEB.Migrations
                 name: "Presencas");
 
             migrationBuilder.DropTable(
+                name: "Usuarios");
+
+            migrationBuilder.DropTable(
                 name: "ConjuntoAlunos");
 
             migrationBuilder.DropTable(
                 name: "Grades");
+
+            migrationBuilder.DropTable(
+                name: "Alunos");
 
             migrationBuilder.DropTable(
                 name: "Dias");
@@ -362,7 +398,7 @@ namespace MatriculaWEB.Migrations
                 name: "Disciplinas");
 
             migrationBuilder.DropTable(
-                name: "Mentor");
+                name: "Mentores");
 
             migrationBuilder.DropTable(
                 name: "AdministracaoHorarios");

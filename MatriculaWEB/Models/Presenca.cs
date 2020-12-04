@@ -23,7 +23,6 @@ namespace MatriculaWEB.Models
         [ForeignKey("GradeId")]
         public Grade Grade { get; set; }
         public int GradeId { get; set; }
-        //public Aluno Aluno { get; set; }
         public DateTime Data { get; set; }
         public Boolean Presente { get; set; }
     }
