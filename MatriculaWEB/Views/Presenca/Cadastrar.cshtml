@@ -9,59 +9,61 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" />
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>*@
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" />*@
+    <script src="~/js/multiselect.js"></script>
+    <link href="~/css/multiselec.css" rel="stylesheet" />
 </head>
-<body>
-    <form id="framework_form" asp-action="Cadastrar" asp-controller="Presenca" method="post"
-          enctype="multipart/form-data">
-        <fieldset>
-            <legend>Cadastrar Presença</legend>
+        <body>
+            <form id="framework_form" asp-action="Cadastrar" asp-controller="Presenca" method="post"
+                  enctype="multipart/form-data">
+                <fieldset>
+                    <legend>Cadastrar Presença</legend>
 
 
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="form-group">
-                <label asp-for="Id">Id:</label>
-                <input name="idturma" class="form-control" asp-for="Id" type"text" value="@ViewBag.IdTurma" />
-                <span class="text-danger" asp-validation-for="Id"></span>
-            </div>
+                    <div class="form-group">
+                        <label asp-for="Id">Id:</label>
+                        <input name="idturma" class="form-control" asp-for="Id" type"text" value="@ViewBag.IdTurma" />
+                        <span class="text-danger" asp-validation-for="Id"></span>
+                    </div>
 
-            <div class="form-group">
-                <label asp-for="Id">Id:</label>
-                <input name="idgrade" class="form-control" asp-for="Id" type"text" value="@ViewBag.IdGrade" />
-                <span class="text-danger" asp-validation-for="Id"></span>
-            </div>
+                    <div class="form-group">
+                        <label asp-for="Id">Id:</label>
+                        <input name="idgrade" class="form-control" asp-for="Id" type"text" value="@ViewBag.IdGrade" />
+                        <span class="text-danger" asp-validation-for="Id"></span>
+                    </div>
 
-            <div class="form-group">
-                <label asp-for="ConjuntoAlunoId">Alunos:</label>
-                <select id="framework" name="framework[]" multiple="multiple"
-                        asp-items="@ViewBag.ConjuntoAlunos"
-                        asp-for="ConjuntoAlunoId">
-                    <option> -- SELECIONE -- </option>
-                </select>
-            </div>
-            <input type="submit" class="btn btn-info" name="submit" value="Cadastrar" />
-        </fieldset>
-    </form>
-    <br />
-    <br />
+                    <div class="form-group">
+                        <label asp-for="ConjuntoAlunoId">Alunos:</label>
+                        <select id="framework" name="framework[]" multiple="multiple"
+                                asp-items="@ViewBag.ConjuntoAlunos"
+                                asp-for="ConjuntoAlunoId">
+                            <option> -- SELECIONE -- </option>
+                        </select>
+                    </div>
+                    <input type="submit" class="btn btn-info" name="submit" value="Cadastrar" />
+                </fieldset>
+            </form>
+            <br />
+            <br />
 
 
-</body>
-</html>
+        </body>
+        </html>
 
-<script>
-    $(document).ready(function () {
-        $('#framework').multiselect({
-            nonSelectedText: 'Select Framework',
-            enableFiltering: true,
-            enableCaseInsensitiveFiltering: true,
-            buttonWidth: '400px'
-        });
+        <script>
+            $(document).ready(function () {
+                $('#framework').multiselect({
+                    nonSelectedText: 'Marcar alunos com falta',
+                    enableFiltering: true,
+                    enableCaseInsensitiveFiltering: true,
+                    buttonWidth: '400px'
+                });
 
-        $("form").submit(function () {
-        });
+                $("form").submit(function () {
+                });
 
-    });
-</script>
+            });
+        </script>

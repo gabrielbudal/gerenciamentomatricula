@@ -22,6 +22,8 @@ namespace MatriculaWEB.DAL
             Include(a => a.Aluno)
             .Include(t => t.Turma)
                 .ThenInclude(n => n.Nivel)
+            .Include(t => t.Turma)
+                .ThenInclude(a => a.AdministracaoHorario)
             .ToList();
         //public static ConjuntoAluno BuscarConjuntoAluno(ConjuntoAluno conjuntoaluno) => _context.ConjuntoAlunos.Where(ca => ca.Turma == conjuntoaluno.Turma && ca.Aluno == conjuntoaluno.Aluno)
         //           .FirstOrDefault();
