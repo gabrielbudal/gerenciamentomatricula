@@ -10,5 +10,6 @@ namespace MatriculaWEB.Models
     {
         public Usuario() => CriadoEm = DateTime.Now;
         public DateTime CriadoEm { get; set; }
+        public string Cpf { get; set; }
     }
 }

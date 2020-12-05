@@ -51,5 +51,22 @@ namespace MatriculaWEB.Controllers
             }
             return NotFound(new { msg = "Conjunto aluno não localizado!" });
         }
+
+
+        // POST: /api/ConjuntoAluno/Cadastrar
+        [HttpPost]
+        [Route("Cadastrar")]
+        public IActionResult Cadastrar(ConjuntoAluno conjuntoaluno)
+        {
+            if (ModelState.IsValid)
+            {
+                if(_conjuntoalunoDAO.Cadastrar(conjuntoaluno))
+                {
+                    return Created("", conjuntoaluno);
+                }
+                return Conflict(new { msg = "Esse conjunto aluno já existe" });
+            }
+            return BadRequest(ModelState);
+        }
     }
 }

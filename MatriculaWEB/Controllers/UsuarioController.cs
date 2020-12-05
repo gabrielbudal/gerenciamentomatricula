@@ -16,13 +16,15 @@ namespace MatriculaWEB.Controllers
         private readonly Context _context;
         private readonly UserManager<Usuario> _userManager;
         private readonly SignInManager<Usuario> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
         public UsuarioController(Context context, UserManager<Usuario> userManager, 
-            SignInManager<Usuario> signInManager)
+            SignInManager<Usuario> signInManager, RoleManager<IdentityRole> roleManager)
         {
             _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
         }
 
         // GET: Usuario
@@ -52,33 +54,42 @@ namespace MatriculaWEB.Controllers
         // GET: Usuario/Create
         public IActionResult Create()
         {
-            return View();
+            RegisterViewModel registerViewModel = new RegisterViewModel();
+            return View(registerViewModel);
         }
 
         // POST: Usuario/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Email,Senha,Id,CriadoEm,Ativo,ConfirmacaoSenha")] UsuarioView usuarioView)
+        public async Task<IActionResult> Create(RegisterViewModel model, UsuarioView usuarioView)
         {
             if (ModelState.IsValid)
             {
                 Usuario usuario = new Usuario
                 {
-                    UserName = usuarioView.Email,
-                    Email = usuarioView.Email
+                    UserName = model.Cpf,
+                    Email = model.Email
                 };
-                IdentityResult resultado = await _userManager.CreateAsync(usuario, usuarioView.Senha);
+                IdentityResult resultado = await _userManager.CreateAsync(usuario, model.Senha);
                 if (resultado.Succeeded)
                 {
+                    //-------------------atribuir role ao user------------------------------
+                    var applicationRole = await _roleManager.FindByNameAsync(model.Role);
+                    if (applicationRole != null)
+                    {
+                        IdentityResult roleResult = await _userManager.AddToRoleAsync(usuario, applicationRole.Name);
+                    }
+                    //-------------------atribuir role ao user------------------------------
                     _context.Add(usuarioView);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
                 }
                 AdicionarErros(resultado);
             }
-            return View(usuarioView);
+            return View(model);
         }
 
         public void AdicionarErros (IdentityResult resultado)
@@ -95,9 +106,9 @@ namespace MatriculaWEB.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login([Bind("Email, Senha")] UsuarioView usuarioView)
+        public async Task<IActionResult> Login(UsuarioView usuarioView)
         {
-            var result = await _signInManager.PasswordSignInAsync(usuarioView.Email, usuarioView.Senha, 
+            var result = await _signInManager.PasswordSignInAsync(usuarioView.Cpf, usuarioView.Senha, 
                 false, false);
             string name = _signInManager.Context.User.Identity.Name;
             if(result.Succeeded)

@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MatriculaWEB.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Aluno, Admin, Mentor")]
     public class AlunoController : Controller
     {
         private readonly AlunoDAO _alunoDAO;

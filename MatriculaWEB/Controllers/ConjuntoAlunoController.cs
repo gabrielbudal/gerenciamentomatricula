@@ -27,6 +27,11 @@ namespace MatriculaWEB.Controllers
             ViewBag.Title = "Gerenciamento de relacionamento Mentores x Disciplinas";
             return View(_conjuntoalunoDAO.Listar());
         }
+
+
+
+
+        //validar se o aluno já não está atrelado a uma turma (parecido com o que foi feito na validação da API mas sem a turma, so aluno)
         public IActionResult Cadastrar()
         {
             ViewBag.Turmas = new SelectList(_turmaDAO.Listar(), "Id", "Nivel");

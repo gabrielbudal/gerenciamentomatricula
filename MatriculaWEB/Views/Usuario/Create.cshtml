@@ -1,4 +1,4 @@
-﻿@model MatriculaWEB.Models.UsuarioView
+﻿@model MatriculaWEB.Models.RegisterViewModel
 
 <h1>Create</h1>
 
@@ -22,21 +22,30 @@
                 </div>
                 <button type="button" onclick="BuscarEmail()" class="btn btn-primary">Validar e-mail</button>
             </fieldset>
-                <fieldset>
-                    <div class="form-group">
-                        <label asp-for="Senha" class="control-label"></label>
-                        <input asp-for="Senha" class="form-control" />
-                        <span asp-validation-for="Senha" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="ConfirmacaoSenha" class="control-label"></label>
-                        <input asp-for="ConfirmacaoSenha" class="form-control" />
-                        <span asp-validation-for="ConfirmacaoSenha" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <input id="enviar" type="submit" value="Enviar" class="btn btn-primary" />
-                    </div>
-                </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <label asp-for="Cpf" class="control-label"></label>
+                    <input asp-for="Cpf" class="form-control" />
+                    <span asp-validation-for="Cpf" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Senha" class="control-label"></label>
+                    <input asp-for="Senha" class="form-control" />
+                    <span asp-validation-for="Senha" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ConfirmacaoSenha" class="control-label"></label>
+                    <input asp-for="ConfirmacaoSenha" class="form-control" />
+                    <span asp-validation-for="ConfirmacaoSenha" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Roles"></label>
+                    @Html.DropDownList("Role", new SelectList(Model.Roles, "Text", "Text"))
+                </div>
+                <div class="form-group">
+                    <input id="enviar" type="submit" value="Enviar" class="btn btn-primary" />
+                </div>
+            </fieldset>
         </form>
     </div>
 </div>
@@ -46,7 +55,7 @@
 </div>
 
 <script>
-    document.getElementById("enviar").disabled = true;
+    document.getElementById("enviar").disabled = false;
 
     var txtEmail = document.getElementById("emailverif");
 

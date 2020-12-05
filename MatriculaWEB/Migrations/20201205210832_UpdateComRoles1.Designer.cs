@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MatriculaWEB.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20201203021645_AddTableUsuario")]
-    partial class AddTableUsuario
+    [Migration("20201205210832_UpdateComRoles1")]
+    partial class UpdateComRoles1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -320,7 +320,7 @@ namespace MatriculaWEB.Migrations
                     b.Property<DateTime>("Data")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("GradeId")
+                    b.Property<int>("GradeId")
                         .HasColumnType("int");
 
                     b.Property<bool>("Presente")
@@ -376,6 +376,9 @@ namespace MatriculaWEB.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Cpf")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CriadoEm")
@@ -663,7 +666,9 @@ namespace MatriculaWEB.Migrations
 
                     b.HasOne("MatriculaWEB.Models.Grade", "Grade")
                         .WithMany()
-                        .HasForeignKey("GradeId");
+                        .HasForeignKey("GradeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MatriculaWEB.Models.Turma", b =>

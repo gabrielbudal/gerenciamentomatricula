@@ -18,6 +18,21 @@ namespace MatriculaWEB.DAL
             _context.SaveChanges();
             return true;
         }
+        public bool CadastrarValida(ConjuntoAluno conjuntoaluno)
+        {
+            //_context.ChangeTracker.AutoDetectChangesEnabled = false;
+            if(ValidarPorId(conjuntoaluno.Aluno.Id, conjuntoaluno.Turma.Id) == null) 
+            {
+                _context.ConjuntoAlunos.Add(conjuntoaluno);
+                _context.SaveChanges();
+                return true;
+            } 
+            return false;
+        }
+        public ConjuntoAluno ValidarPorId(int idaluno, int idturma) => _context.ConjuntoAlunos.Include(a => a.Aluno).Include(t => t.Turma)
+            .Where(ca => ca.Turma.Id == idturma 
+                && ca.Aluno.Id == idaluno)
+                   .FirstOrDefault();
         public List<ConjuntoAluno> Listar() => _context.ConjuntoAlunos.
             Include(a => a.Aluno)
             .Include(t => t.Turma)
@@ -31,7 +46,13 @@ namespace MatriculaWEB.DAL
                    .ToList();
         public List<ConjuntoAluno> BuscarConjuntoAlunoPorIdTurma(int idturma) => _context.ConjuntoAlunos.Include(a => a.Aluno).Where(ca => ca.Turma.Id == idturma)
                    .ToList();
-        public ConjuntoAluno BuscarConjuntoAlunoPorId(int idconjuntoaluno) => _context.ConjuntoAlunos.Where(ca => ca.Id == idconjuntoaluno)
+        public ConjuntoAluno BuscarConjuntoAlunoPorId(int idconjuntoaluno) => _context.ConjuntoAlunos
+            .Include(a => a.Aluno)
+            .Include(t => t.Turma)
+                .ThenInclude(n => n.Nivel)
+            .Include(t => t.Turma)
+                .ThenInclude(a => a.AdministracaoHorario)
+            .Where(ca => ca.Id == idconjuntoaluno)
                    .FirstOrDefault();
         public ConjuntoAluno BuscarConjuntoAlunoPorIdTabelas(int idconjuntoaluno) => _context.ConjuntoAlunos.Where(ca => ca.Id == idconjuntoaluno)
                    .FirstOrDefault();
