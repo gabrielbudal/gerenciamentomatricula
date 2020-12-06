@@ -38,6 +38,7 @@ namespace MatriculaWEB
             services.AddScoped<NivelDAO>();
             services.AddScoped<PresencaDAO>();
             services.AddScoped<TurmaDAO>();
+            services.AddScoped<ChatDAO>();
 
             services.AddDbContext<Context>
                 (options => options.UseSqlServer(

@@ -44,6 +44,11 @@ namespace MatriculaWEB.DAL
         //           .FirstOrDefault();
         public List<ConjuntoAluno> BuscarConjuntoAlunoPorTurma(ConjuntoAluno conjuntoaluno) => _context.ConjuntoAlunos.Include(a => a.Aluno).Where(ca => ca.Turma == conjuntoaluno.Turma)
                    .ToList();
+        public ConjuntoAluno BuscarConjuntoAlunoPorCpf(string cpf) => _context.ConjuntoAlunos
+            .Include(a => a.Aluno)
+            .Include(t => t.Turma)
+            .Where(ca => ca.Aluno.Cpf == cpf)
+            .FirstOrDefault();
         public List<ConjuntoAluno> BuscarConjuntoAlunoPorIdTurma(int idturma) => _context.ConjuntoAlunos.Include(a => a.Aluno).Where(ca => ca.Turma.Id == idturma)
                    .ToList();
         public ConjuntoAluno BuscarConjuntoAlunoPorId(int idconjuntoaluno) => _context.ConjuntoAlunos

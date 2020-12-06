@@ -27,5 +27,6 @@ namespace MatriculaWEB.Models
         public DbSet<Presenca> Presencas { get; set; }
         public DbSet<Mentor> Mentores { get; set; }
         public DbSet<UsuarioView> Usuarios { get; set; }
+        public DbSet<Chat> Chats { get; set; }
     }
 }

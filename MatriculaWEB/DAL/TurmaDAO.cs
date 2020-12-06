@@ -26,6 +26,11 @@ namespace MatriculaWEB.DAL
                     .FirstOrDefault();
         public Turma BuscarTurmaPorId(int id) => _context.Turmas.Where(t => t.Id == id)
                     .FirstOrDefault();
+        public List<Turma> BuscarTurmaPorIdLista(int id) => _context.Turmas
+            .Include(n => n.Nivel)
+            .Include(adm => adm.AdministracaoHorario)
+            .Where(t => t.Id == id)
+                    .ToList();
         public List<Grade> ListarGradeHojePorTurma(string dia) => _context.Grades
             .Include(d => d.Dia)
             .Include(t => t.Turma)
