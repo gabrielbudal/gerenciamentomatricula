@@ -23,5 +23,6 @@ namespace MatriculaWEB.Models
         [NotMapped]
         [Compare("Senha", ErrorMessage = "Valores não coincidem!")]
         public string ConfirmacaoSenha { get; set; }
+        public string TipoUsuario { get; set; }
     }
 }

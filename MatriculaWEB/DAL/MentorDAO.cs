@@ -20,6 +20,7 @@ namespace MatriculaWEB.DAL
             }
             return false;
         }
+        public Mentor BuscarPorCpf(string cpf) => _context.Mentores.FirstOrDefault(m => m.Cpf == cpf);
         public void Remover(int id)
         {
             _context.Mentores.Remove(_context.Mentores.Find(id));

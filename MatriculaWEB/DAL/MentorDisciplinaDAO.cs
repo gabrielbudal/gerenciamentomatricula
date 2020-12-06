@@ -26,6 +26,11 @@ namespace MatriculaWEB.DAL
                     .FirstOrDefault();
         public MentorDisciplina BuscarMentorDisciplinaPorId(int id) => _context.MentorDisciplinas.Where(md => md.Id == id)
                     .FirstOrDefault();
+        public List<MentorDisciplina> ListarMentoresDisciplinasPorMentor(Mentor mentor) => _context.MentorDisciplinas
+            .Include(m => m.Mentor)
+            .Include(d => d.Disciplina)
+            .Where(md => md.MentorId == mentor.Id)
+            .ToList();
         //public static MentorDisciplina BuscarConteudosMentorDisciplina(int id)
         //{
 

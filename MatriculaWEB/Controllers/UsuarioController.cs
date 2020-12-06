@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using MatriculaWEB.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using MatriculaWEB.DAL;
+using MatriculaWEB.Utils;
 
 namespace MatriculaWEB.Controllers
 {
@@ -17,14 +19,26 @@ namespace MatriculaWEB.Controllers
         private readonly UserManager<Usuario> _userManager;
         private readonly SignInManager<Usuario> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly AlunoDAO _alunoDAO;
+        private readonly MentorDAO _mentorDAO;
+        private readonly Sessao _sessao;
+        private readonly ConjuntoAlunoDAO _conjuntoAlunoDAO;
+        private readonly UsuarioViewDAO _usuarioViewDAO;
 
-        public UsuarioController(Context context, UserManager<Usuario> userManager, 
-            SignInManager<Usuario> signInManager, RoleManager<IdentityRole> roleManager)
+        public UsuarioController(Context context, UserManager<Usuario> userManager,
+            SignInManager<Usuario> signInManager, RoleManager<IdentityRole> roleManager,
+            AlunoDAO alunoDAO, MentorDAO mentorDAO, Sessao sessao, ConjuntoAlunoDAO conjuntoAlunoDAO, 
+            UsuarioViewDAO usuarioViewDAO)
         {
             _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
+            _alunoDAO = alunoDAO;
+            _mentorDAO = mentorDAO;
+            _sessao = sessao;
+            _conjuntoAlunoDAO = conjuntoAlunoDAO;
+            _usuarioViewDAO = usuarioViewDAO;
         }
 
         // GET: Usuario
@@ -68,26 +82,61 @@ namespace MatriculaWEB.Controllers
         {
             if (ModelState.IsValid)
             {
-                Usuario usuario = new Usuario
-                {
-                    UserName = model.Cpf,
-                    Email = model.Email
-                };
-                IdentityResult resultado = await _userManager.CreateAsync(usuario, model.Senha);
-                if (resultado.Succeeded)
-                {
-                    //-------------------atribuir role ao user------------------------------
-                    var applicationRole = await _roleManager.FindByNameAsync(model.Role);
-                    if (applicationRole != null)
+                Aluno validaaluno = _alunoDAO.BuscarPorCpf(model.Cpf);
+                if (validaaluno != null)
+                { 
+                    Usuario usuario = new Usuario
                     {
-                        IdentityResult roleResult = await _userManager.AddToRoleAsync(usuario, applicationRole.Name);
+                        UserName = model.Cpf,
+                        Email = model.Email
+                    };
+                    IdentityResult resultado = await _userManager.CreateAsync(usuario, model.Senha);
+                    if (resultado.Succeeded)
+                    {
+                        //-------------------atribuir role ao user------------------------------
+                        var applicationRole = await _roleManager.FindByNameAsync("Aluno");
+                        if (applicationRole != null)
+                        {
+                            IdentityResult roleResult = await _userManager.AddToRoleAsync(usuario, applicationRole.Name);
+                        }
+                        //-------------------atribuir role ao user------------------------------
+
+                        usuarioView.TipoUsuario = "Aluno";
+                        _context.Add(usuarioView);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Login));
                     }
-                    //-------------------atribuir role ao user------------------------------
-                    _context.Add(usuarioView);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
+                    AdicionarErros(resultado);
+                } else
+                {
+                    Mentor validamentor = _mentorDAO.BuscarPorCpf(model.Cpf);
+                    if (validamentor != null)
+                    {
+                        Usuario usuario = new Usuario
+                        {
+                            UserName = model.Cpf,
+                            Email = model.Email
+                        };
+                        IdentityResult resultado = await _userManager.CreateAsync(usuario, model.Senha);
+                        if (resultado.Succeeded)
+                        {
+                            //-------------------atribuir role ao user------------------------------
+                            var applicationRole = await _roleManager.FindByNameAsync("Mentor");
+                            if (applicationRole != null)
+                            {
+                                IdentityResult roleResult = await _userManager.AddToRoleAsync(usuario, applicationRole.Name);
+                            }
+                            //-------------------atribuir role ao user------------------------------
+
+                            usuarioView.TipoUsuario = "Mentor";
+                            _context.Add(usuarioView);
+                            await _context.SaveChangesAsync();
+                            return RedirectToAction(nameof(Login));
+                        }
+                        AdicionarErros(resultado);
+                    }
                 }
-                AdicionarErros(resultado);
+                ModelState.AddModelError("", "Você não possui pré-cadastro realizado, por gentileza reveja seus dados ou entre em contato com a secretaria!");
             }
             return View(model);
         }
@@ -113,7 +162,7 @@ namespace MatriculaWEB.Controllers
             string name = _signInManager.Context.User.Identity.Name;
             if(result.Succeeded)
             {
-                return RedirectToAction("Index", "Aluno");
+                return RedirectToAction("Index", "Home");
             }
             ModelState.AddModelError("", "Login ou senha inválidos!");
             return View(usuarioView);

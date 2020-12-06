@@ -38,10 +38,11 @@
                     <input asp-for="ConfirmacaoSenha" class="form-control" />
                     <span asp-validation-for="ConfirmacaoSenha" class="text-danger"></span>
                 </div>
-                <div class="form-group">
+                @*<div class="form-group">
                     <label asp-for="Roles"></label>
                     @Html.DropDownList("Role", new SelectList(Model.Roles, "Text", "Text"))
                 </div>
+                *@
                 <div class="form-group">
                     <input id="enviar" type="submit" value="Enviar" class="btn btn-primary" />
                 </div>

@@ -488,6 +488,9 @@ namespace MatriculaWEB.Migrations
                     b.Property<string>("Senha")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("TipoUsuario")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Usuarios");

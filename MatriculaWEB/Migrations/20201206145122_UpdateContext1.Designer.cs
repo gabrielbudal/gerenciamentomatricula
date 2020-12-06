@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MatriculaWEB.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20201206005308_UpdateComRoles3")]
-    partial class UpdateComRoles3
+    [Migration("20201206145122_UpdateContext1")]
+    partial class UpdateContext1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

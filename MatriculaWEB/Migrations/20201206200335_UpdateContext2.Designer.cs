@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MatriculaWEB.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20201205210351_UpdateComRoles")]
-    partial class UpdateComRoles
+    [Migration("20201206200335_UpdateContext2")]
+    partial class UpdateContext2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -76,6 +76,35 @@ namespace MatriculaWEB.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Alunos");
+                });
+
+            modelBuilder.Entity("MatriculaWEB.Models.Chat", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Cpf")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CriadoEm")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Mensagem")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TurmaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TurmaId");
+
+                    b.ToTable("Chats");
                 });
 
             modelBuilder.Entity("MatriculaWEB.Models.ConjuntoAluno", b =>
@@ -447,6 +476,10 @@ namespace MatriculaWEB.Migrations
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Cpf")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CriadoEm")
                         .HasColumnType("datetime2");
 
@@ -455,7 +488,9 @@ namespace MatriculaWEB.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Senha")
-                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TipoUsuario")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -592,6 +627,15 @@ namespace MatriculaWEB.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("MatriculaWEB.Models.Chat", b =>
+                {
+                    b.HasOne("MatriculaWEB.Models.Turma", "Turma")
+                        .WithMany()
+                        .HasForeignKey("TurmaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MatriculaWEB.Models.ConjuntoAluno", b =>

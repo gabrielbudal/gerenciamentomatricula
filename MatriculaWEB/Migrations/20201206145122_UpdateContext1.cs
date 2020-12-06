@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MatriculaWEB.Migrations
 {
-    public partial class UpdateComRoles : Migration
+    public partial class UpdateContext1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -154,7 +154,8 @@ namespace MatriculaWEB.Migrations
                     CriadoEm = table.Column<DateTime>(nullable: false),
                     Ativo = table.Column<bool>(nullable: false),
                     Email = table.Column<string>(nullable: false),
-                    Senha = table.Column<string>(nullable: false)
+                    Cpf = table.Column<string>(nullable: false),
+                    Senha = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -353,6 +354,29 @@ namespace MatriculaWEB.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Chats",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CriadoEm = table.Column<DateTime>(nullable: false),
+                    Ativo = table.Column<bool>(nullable: false),
+                    Mensagem = table.Column<string>(nullable: true),
+                    Cpf = table.Column<string>(nullable: true),
+                    TurmaId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Chats", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Chats_Turmas_TurmaId",
+                        column: x => x.TurmaId,
+                        principalTable: "Turmas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ConjuntoAlunos",
                 columns: table => new
                 {
@@ -486,6 +510,11 @@ namespace MatriculaWEB.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Chats_TurmaId",
+                table: "Chats",
+                column: "TurmaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ConjuntoAlunos_AlunoId",
                 table: "ConjuntoAlunos",
                 column: "AlunoId");
@@ -567,6 +596,9 @@ namespace MatriculaWEB.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Chats");
 
             migrationBuilder.DropTable(
                 name: "HistoricoAlunos");

@@ -48,6 +48,14 @@ namespace MatriculaWEB.DAL
         public List<Grade> ListarPorTurma(int id) => _context.Grades.Include(t => t.Turma)
                     .Where(g => g.Turma.Id == id)
                     .ToList();
+        public List<Grade> ListarGradePorMentorDisciplina(List<MentorDisciplina> mentordisciplinas) => _context.Grades
+            .Include(t => t.Turma)
+                .ThenInclude(n => n.Nivel)
+            .Include(t => t.Turma)
+                .ThenInclude(t => t.AdministracaoHorario)
+            .Include(md => md.MentorDisciplina)
+            .Where(g => mentordisciplinas.Contains(g.MentorDisciplina))
+            .ToList();
         public void Alterar(Grade grade)
         {
             _context.Grades.Update(grade);

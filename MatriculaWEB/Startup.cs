@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MatriculaWEB.DAL;
 using MatriculaWEB.Models;
+using MatriculaWEB.Utils;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -39,6 +40,10 @@ namespace MatriculaWEB
             services.AddScoped<PresencaDAO>();
             services.AddScoped<TurmaDAO>();
             services.AddScoped<ChatDAO>();
+            services.AddScoped<UsuarioViewDAO>();
+            
+            services.AddHttpContextAccessor();
+            services.AddScoped<Sessao>();
 
             services.AddDbContext<Context>
                 (options => options.UseSqlServer(
@@ -54,6 +59,7 @@ namespace MatriculaWEB
                 options.AccessDeniedPath = "/Usuario/AcessoNegado";
             });
 
+            services.AddSession();
             services.AddControllersWithViews().AddNewtonsoftJson(
                 options => options.SerializerSettings.ReferenceLoopHandling =
                 Newtonsoft.Json.ReferenceLoopHandling.Ignore
@@ -76,6 +82,8 @@ namespace MatriculaWEB
             app.UseRouting();
 
             app.UseAuthentication();
+
+            app.UseSession();
 
             app.UseAuthorization();
 

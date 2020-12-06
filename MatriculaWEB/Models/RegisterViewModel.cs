@@ -30,14 +30,14 @@ namespace MatriculaWEB.Models
         public List<SelectListItem> Roles { get; set; }
         public string Cpf { get; set; }
 
-        public string Role { get; set; }
+        //public string Role { get; set; }
 
-        public RegisterViewModel()
-        {
-            Roles = new List<SelectListItem>();
-            Roles.Add(new SelectListItem() { Value = "1", Text = "Admin" });
-            Roles.Add(new SelectListItem() { Value = "2", Text = "Aluno" });
-            Roles.Add(new SelectListItem() { Value = "3", Text = "Mentor" });
-        }
+        //public RegisterViewModel()
+        //{
+        //    Roles = new List<SelectListItem>();
+        //    Roles.Add(new SelectListItem() { Value = "1", Text = "Admin" });
+        //    Roles.Add(new SelectListItem() { Value = "2", Text = "Aluno" });
+        //    Roles.Add(new SelectListItem() { Value = "3", Text = "Mentor" });
+        //}
     }
 }
