@@ -7,6 +7,7 @@ using MatriculaWEB.Models;
 using MatriculaWEB.Utils;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace MatriculaWEB.Controllers
 {
@@ -20,6 +21,7 @@ namespace MatriculaWEB.Controllers
         private readonly MentorDAO _mentorDAO;
         private readonly MentorDisciplinaDAO _mentorDisciplinaDAO;
         private readonly GradeDAO _gradeDAO;
+        private readonly AlunoDAO _alunoDAO;
         public ChatController(ChatDAO chatDAO, 
             TurmaDAO turmaDAO, 
             UserManager<Usuario> userManager,
@@ -27,7 +29,8 @@ namespace MatriculaWEB.Controllers
             Sessao sessao,
             MentorDAO mentorDAO,
             MentorDisciplinaDAO mentorDisciplinaDAO,
-            GradeDAO gradeDAO)
+            GradeDAO gradeDAO,
+            AlunoDAO alunoDAO)
         {
             _chatDAO = chatDAO;
             _turmaDAO = turmaDAO;
@@ -37,6 +40,7 @@ namespace MatriculaWEB.Controllers
             _mentorDAO = mentorDAO;
             _mentorDisciplinaDAO = mentorDisciplinaDAO;
             _gradeDAO = gradeDAO;
+            _alunoDAO = alunoDAO;
         }
         public IActionResult Index()
         {
@@ -57,13 +61,15 @@ namespace MatriculaWEB.Controllers
                 Mentor mentor = _mentorDAO.BuscarMentorPorCpf(cpf);
                 List <MentorDisciplina> mentordisciplinas = _mentorDisciplinaDAO.ListarMentoresDisciplinasPorMentor(mentor);
                 List<Grade> grades = _gradeDAO.ListarGradePorMentorDisciplina(mentordisciplinas);
+                
                 List<Turma> turmas = new List<Turma>();
 
                 foreach (var ca in grades)
                 {
                     turmas.Add(ca.Turma);
                 }
-                return View(turmas);
+                List<Turma> turmas2 = _turmaDAO.BuscarTurmaPorListaLista(turmas);
+                return View(turmas2);
             }
         }
         public IActionResult BatePapo(int id)
@@ -101,7 +107,9 @@ namespace MatriculaWEB.Controllers
                 Turma turma = _turmaDAO.BuscarTurmaPorId(idturma);
 
                 chat.Mensagem = resultForm;
-                chat.Cpf = _userManager.GetUserName(User);
+                var cpf1 = _userManager.GetUserName(User);
+                Aluno aluno1 = _alunoDAO.BuscarPorCpf(cpf1);
+                chat.Cpf = aluno1.Nome;
                 chat.Turma = turma;
 
                 _chatDAO.Cadastrar(chat);
@@ -111,9 +119,11 @@ namespace MatriculaWEB.Controllers
                 var resultForm = HttpContext.Request.Form["msg"];
                 var resultForm2 = int.Parse(HttpContext.Request.Form["idturma"]);
                 Turma turma = _turmaDAO.BuscarTurmaPorId(resultForm2);
+                var cpf2 = _userManager.GetUserName(User);
+                Mentor mentor1 = _mentorDAO.BuscarMentorPorCpf(cpf2);
 
                 chat.Mensagem = resultForm;
-                chat.Cpf = _userManager.GetUserName(User);
+                chat.Cpf = mentor1.Nome;
                 chat.Turma = turma;
 
                 _chatDAO.Cadastrar(chat);

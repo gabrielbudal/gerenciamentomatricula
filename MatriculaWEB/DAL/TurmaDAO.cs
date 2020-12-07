@@ -31,6 +31,11 @@ namespace MatriculaWEB.DAL
             .Include(adm => adm.AdministracaoHorario)
             .Where(t => t.Id == id)
                     .ToList();
+        public List<Turma> BuscarTurmaPorListaLista(List<Turma> turmas) => _context.Turmas
+            .Include(n => n.Nivel)
+            .Include(adm => adm.AdministracaoHorario)
+            .Where(t => turmas.Contains(t))
+                    .ToList();
         public List<Grade> ListarGradeHojePorTurma(string dia) => _context.Grades
             .Include(d => d.Dia)
             .Include(t => t.Turma)
