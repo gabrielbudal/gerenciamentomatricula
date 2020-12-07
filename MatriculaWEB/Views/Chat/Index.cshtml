@@ -11,7 +11,6 @@
     <table class="table table-hover table-striped espacamento-baixo">
         <thead>
             <tr>
-                <th>Horarios</th>
                 <th>Nivel</th>
                 <th>Ano</th>
                 <th>Criado em</th>
@@ -22,7 +21,6 @@
             @foreach (Turma turmaCadastrada in Model)
             {
                 <tr>
-                    <td>@turmaCadastrada.AdministracaoHorario</td>
                     <td>@turmaCadastrada.Nivel</td>
                     <td>@turmaCadastrada.Ano</td>
                     <td>@turmaCadastrada.CriadoEm.ToString(@*"dd/MM/yyyy hh:mm:ss"*@)</td>

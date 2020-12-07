@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MatriculaWEB.DAL;
 using MatriculaWEB.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -14,13 +15,16 @@ namespace MatriculaWEB.Controllers
         private readonly PresencaDAO _presencaDAO;
         private readonly ConjuntoAlunoDAO _conjuntoalunoDAO;
         private readonly GradeDAO _gradeDAO;
+        private readonly UserManager<Usuario> _userManager;
         public PresencaController(PresencaDAO presencaDAO, 
             ConjuntoAlunoDAO conjuntoalunoDAO,
-            GradeDAO gradeDAO)
+            GradeDAO gradeDAO,
+            UserManager<Usuario> userManager)
         {
             _presencaDAO = presencaDAO;
             _conjuntoalunoDAO = conjuntoalunoDAO;
             _gradeDAO = gradeDAO;
+            _userManager = userManager;
         }
         public IActionResult Index()
         {
@@ -38,6 +42,7 @@ namespace MatriculaWEB.Controllers
             //A partir da turma obteve conjunto aluno que preencherá a grid
             ViewBag.IdGrade = idgrade;
             ViewBag.IdTurma = idturma;
+
             ViewBag.ConjuntoAlunos = new SelectList(_conjuntoalunoDAO.BuscarConjuntoAlunoPorIdTurma(idturma), "Id", "Aluno");
 
             //ViewBag.ConjuntoAlunos = new SelectList(_conjuntoalunoDAO.Listar(), "Id", "Aluno");
@@ -108,7 +113,10 @@ namespace MatriculaWEB.Controllers
         {
             DateTime dataatual = DateTime.Now;
             string datavalidador = dataatual.ToString("dddd");
-            return View(_gradeDAO.ListarGradeHoje(datavalidador));
+
+            string cpf = _userManager.GetUserName(User);
+            //return View(_gradeDAO.ListarGradeHoje(datavalidador));
+            return View(_gradeDAO.ListarGradeHojeEMentor(datavalidador, cpf));
         }
         public IActionResult Alterar(int id)
         {

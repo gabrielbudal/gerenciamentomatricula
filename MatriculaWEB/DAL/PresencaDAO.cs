@@ -32,6 +32,15 @@ namespace MatriculaWEB.DAL
                     .ThenInclude(n => n.Nivel)
             .Include(g => g.Grade)
             .ToList();
+        public List<Presenca> ListarPorAluno(string cpf) => _context.Presencas
+            .Include(ca => ca.ConjuntoAluno)
+                .ThenInclude(t => t.Turma)
+                    .ThenInclude(n => n.Nivel)
+            .Include(ca => ca.ConjuntoAluno)
+                .ThenInclude(a => a.Aluno)
+            .Include(g => g.Grade)
+            .Where(p => p.ConjuntoAluno.Aluno.Cpf == cpf)
+            .ToList();
         public List<Presenca> ListarPresencasHoje(string dia, DateTime data) => _context.Presencas
             .Include(p => p.Grade)
                 .ThenInclude(d => d.Dia)

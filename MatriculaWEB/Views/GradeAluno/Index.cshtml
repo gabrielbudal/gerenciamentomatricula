@@ -1,0 +1,40 @@
+﻿@model List<Grade>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Gerenciamento de grade</title>
+</head>
+<body>
+    <h2>Gerenciamento de grade</h2>
+    <table class="table table-hover table-striped espacamento-baixo">
+        <thead>
+            <tr>
+                <th>Turma</th>
+                <th>Mentor x Disciplina</th>
+                <th>Dia</th>
+                <th>Horário Início</th>
+                <th>Horário Fim</th>
+                <th>Criado em</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Grade gradeCadastrado in Model)
+            {
+                <tr>
+                    <td>@gradeCadastrado.Turma</td>
+                    <td>@gradeCadastrado.MentorDisciplina</td>
+                    <td>@gradeCadastrado.Dia</td>
+                    <td>@gradeCadastrado.HorarioInicio</td>
+                    <td>@gradeCadastrado.HorarioFim</td>
+                    <td>@gradeCadastrado.CriadoEm.ToString(@*"dd/MM/yyyy hh:mm:ss"*@)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <span><b>Quantidade de grades: </b> @Model.Count </span><br />
+    <span><b>Dados atualizados: </b> @DateTime.Now </span>
+
+</body>
+</html>

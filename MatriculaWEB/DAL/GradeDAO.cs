@@ -30,6 +30,18 @@ namespace MatriculaWEB.DAL
             .Include(t => t.Turma)
                 .ThenInclude(n => n.Nivel)
             .ToList();
+        public List<Grade> ListarPorTurma(Turma turma) => _context.Grades
+            .Include(d => d.Dia)
+            .Include(md => md.MentorDisciplina)
+                .ThenInclude(m => m.Mentor)
+            .Include(md => md.MentorDisciplina)
+                .ThenInclude(d => d.Disciplina)
+            .Include(t => t.Turma)
+                .ThenInclude(n => n.Nivel)
+            .Include(t => t.Turma)
+                .ThenInclude(ad => ad.AdministracaoHorario)
+            .Where(g => g.Turma == turma)
+            .ToList();
         public List<Grade> ListarGradeHoje(string dia) => _context.Grades
             .Include(d => d.Dia)
             .Include(m => m.MentorDisciplina)
@@ -39,6 +51,17 @@ namespace MatriculaWEB.DAL
             .Include(t => t.Turma)
                 .ThenInclude(n => n.Nivel)
             .Where(g => g.Dia.Descricao == dia)
+            .ToList();
+        public List<Grade> ListarGradeHojeEMentor(string dia, string cpf) => _context.Grades
+            .Include(d => d.Dia)
+            .Include(m => m.MentorDisciplina)
+                .ThenInclude(m => m.Mentor)
+            .Include(m => m.MentorDisciplina)
+                .ThenInclude(d => d.Disciplina)
+            .Include(t => t.Turma)
+                .ThenInclude(n => n.Nivel)
+            .Where(g => g.Dia.Descricao == dia 
+            && g.MentorDisciplina.Mentor.Cpf == cpf)
             .ToList();
         public Grade BuscarGrade(Grade grade) => _context.Grades.Where(g => g.Turma == grade.Turma && g.MentorDisciplina == grade.MentorDisciplina && g.Dia == grade.Dia && g.HorarioInicio == grade.HorarioInicio && g.HorarioFim == grade.HorarioFim)
                     .FirstOrDefault();
